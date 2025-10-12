@@ -1,0 +1,105 @@
+# Local override files (machine-specific, not tracked)
+*.local
+
+# Backup directories
+.dotfiles_backup_*/
+backup_*/
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+*.bak
+.vscode/
+.idea/
+
+# Shell history (should not be in git)
+.bash_history
+.zsh_history
+.history
+
+# Compiled files
+*.pyc
+*.pyo
+__pycache__/
+*.so
+*.o
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Secret/sensitive files
+.env
+.env.*
+!.env.example
+secrets.sh
+*_secret*
+*_secrets*
+credentials/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Cache directories
+cache/
+.cache/
+*.cache
+
+# Node modules (if you have any JS tools)
+node_modules/
+
+# MacOS specific
+.localized
+
+# Backup files from editors
+*~
+\#*\#
+.#*
+
+# SSH keys (extra safety)
+*.id_rsa
+*.id_ed25519
+id_rsa*
+id_ed25519*
+
+# GPG keys
+*.gpg
+*.asc
+
+# API tokens
+*token*
+*_token
+.token
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Dotfiles machine-specific
+.machine_type
+.dotfiles.log
+.dotfiles_backups/
+
+# Misc
+.netrwhist
+tags
+TAGS
+
+# SpecStory
+.specstory/
