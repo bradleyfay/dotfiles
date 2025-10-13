@@ -111,20 +111,33 @@ lsd
 | `ls -lS` | `lS` | Sort by size |
 | `tree` | `tree` | Tree view |
 
-## Custom Icons (theme.yml) - NOT WORKING ON macOS
+## Custom Icons (theme.yml) - macOS Fix Applied
 
-**⚠️ Known Issue:** Filename-based icon mapping in `theme.yml` does not work on macOS as of eza v0.23.4.
+**✓ Working on macOS!** Custom icon mappings are now configured for chezmoi dotfiles.
 
-While eza supports custom icon configuration through `theme.yml` (added in v0.19.2), the feature is broken on macOS. See: https://github.com/eza-community/eza/issues/1224
+**macOS Note:** On macOS, eza looks for themes in `~/Library/Application Support/eza/theme.yml` instead of `~/.config/eza/theme.yml`. We've created a symlink to make it work.
 
-We've included a `theme.yml` file for potential future compatibility or Linux systems, but currently all `dot_*` files will show default icons on macOS.
-
-**What we tried to configure** (doesn't work yet):
-- `dot_zshrc` → 󰡯 (zsh icon)
+**Chezmoi Pattern** → **Icon** (same as actual dotfile)
+- `dot_zshrc` →  (terminal icon, customizable)
+- `dot_bashrc` → 󱆃 (bash icon)
+- `dot_gitconfig` → 󰊢 (git icon)
+- `dot_gitignore` → 󰊢 (git icon)
 - `dot_Brewfile` → 󱁤 (Homebrew icon)
-- etc.
+- `dot_vimrc` →  (vim icon)
+- `.chezmoiignore`, `.chezmoiattributes` → 󰆍 (chezmoi icon)
+- `*.tmpl` files → 󰗀 (template icon)
 
-The file is at `~/.config/eza/theme.yml` for Linux/future use.
+**Theme file locations:**
+- Source: `~/.config/eza/theme.yml`
+- macOS symlink: `~/Library/Application Support/eza/theme.yml` → `~/.config/eza/theme.yml`
+
+**To customize icons:**
+```bash
+cme ~/.config/eza/theme.yml   # Edit and apply
+chezmoi apply                   # Changes take effect immediately
+```
+
+Find icons at: https://www.nerdfonts.com/cheat-sheet
 
 ## Dependencies
 

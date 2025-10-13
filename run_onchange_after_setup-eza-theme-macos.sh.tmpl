@@ -1,0 +1,23 @@
+#!/bin/bash
+# Setup eza theme.yml symlink for macOS
+# On macOS, eza looks in ~/Library/Application Support/eza/theme.yml
+# We symlink it to ~/.config/eza/theme.yml for XDG compliance
+
+{{- if eq .chezmoi.os "darwin" }}
+
+EZA_MACOS_DIR="$HOME/Library/Application Support/eza"
+THEME_SOURCE="$HOME/.config/eza/theme.yml"
+THEME_LINK="$EZA_MACOS_DIR/theme.yml"
+
+# Create the macOS eza config directory
+mkdir -p "$EZA_MACOS_DIR"
+
+# Create or update symlink
+if [ ! -L "$THEME_LINK" ] || [ "$(readlink "$THEME_LINK")" != "$THEME_SOURCE" ]; then
+    ln -sf "$THEME_SOURCE" "$THEME_LINK"
+    echo "✓ Created symlink: $THEME_LINK -> $THEME_SOURCE"
+else
+    echo "✓ Symlink already exists and is correct"
+fi
+
+{{- end }}
