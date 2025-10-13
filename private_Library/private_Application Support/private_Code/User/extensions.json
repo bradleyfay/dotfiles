@@ -1,0 +1,49 @@
+{
+  // VS Code Extension Recommendations
+  // These will be suggested when opening VS Code on a new machine
+
+  "recommendations": [
+    // === Core Development ===
+    "anthropic.claude-code",              // Claude Code AI assistant
+    "eamodio.gitlens",                    // Git supercharged
+
+    // === Theme & Appearance ===
+    "enkia.tokyo-night",                  // Tokyo Night theme
+    "pkief.material-icon-theme",          // Material icons for files/folders
+    "johnpapa.vscode-peacock",            // Color workspace tabs (multi-window)
+
+    // === Infrastructure as Code ===
+    "hashicorp.terraform",                // Terraform support
+
+    // === Documentation & Writing ===
+    "yzhang.markdown-all-in-one",         // Markdown support
+    "bierner.markdown-mermaid",           // Mermaid diagrams in markdown preview
+
+    // === Configuration Files ===
+    "tamasfe.even-better-toml",           // TOML language support
+
+    // === AI Conversation Tracking ===
+    "specstory.specstory-vscode"          // SpecStory - save AI conversations locally
+  ],
+
+  // === Project-Specific Extensions ===
+  // These should be added to workspace .vscode/extensions.json when needed
+
+  // Python Projects:
+  // "ms-python.python"                   // Python language support
+  // "ms-python.vscode-pylance"           // Python language server
+  // "ms-python.debugpy"                  // Python debugger
+  // "ms-python.mypy-type-checker"        // Type checking
+  // "ms-python.vscode-python-envs"       // Virtual environment management
+  // "charliermarsh.ruff"                 // Ruff linter/formatter
+
+  // DevOps/Containers (when needed):
+  // "ms-vscode-remote.remote-containers" // Dev Containers
+  // "ms-azuretools.vscode-containers"    // Docker support
+  // "github.vscode-github-actions"       // GitHub Actions
+
+  "unwantedRecommendations": [
+    // Extensions to exclude from recommendations
+    "DavidAnson.vscode-markdownlint"     // Too strict for LLM-generated markdown
+  ]
+}

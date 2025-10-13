@@ -2,7 +2,7 @@
   "workbench.colorTheme": "Tokyo Night",
   "python.analysis.typeCheckingMode": "standard",
   "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    "editor.wordWrap": "on"
   },
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.files.associations": {
@@ -36,7 +36,6 @@
       "schema": false
     }
   ],
-  "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
   "chat.agent.enabled": false,
   // Tokyo Night Terminal Colors - Matching Alacritty
   "workbench.colorCustomizations": {

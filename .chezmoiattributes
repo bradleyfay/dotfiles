@@ -1,0 +1,8 @@
+# Chezmoi attributes - control file permissions
+# Format: pattern permissions
+
+# VS Code settings don't need private permissions
+Library/Application Support/Code/User/*.json !private
+
+# But if you add keybindings or other configs, they can be normal too
+Library/Application Support/Code/User/** !private
