@@ -83,9 +83,13 @@ exit                 # Return to previous directory
 ### Managed Files
 
 - `.zshrc` - Shell configuration
-- `.config/zsh/` - Modular zsh configs with dynamic alias loading
+- `.config/zsh/` - Modular zsh configs
   - `aliases/` - Organized aliases (general, git, navigation)
+  - `env/` - Environment variables (colors, history, prompt)
   - `load-aliases.zsh` - Auto-reload alias system
+  - `load-env.zsh` - Environment variable loader
+- `.config/alacritty/` - Terminal configuration (Tokyo Night theme)
+- `.config/starship.toml` - Prompt configuration (Tokyo Night with custom modules)
 - `.Brewfile` - All your packages and applications
 
 ### Installed Tools (via Brewfile)
@@ -109,7 +113,10 @@ exit                 # Return to previous directory
 - `direnv` - Environment switcher
 - `trash` - Safe rm alternative
 
-**Shell Enhancements:**
+**Shell & Terminal:**
+- `starship` - Modern cross-shell prompt
+- `alacritty` - GPU-accelerated terminal
+- `font-fira-code-nerd-font` - Programming font with ligatures and icons
 - `zsh-autosuggestions`
 - `zsh-syntax-highlighting`
 - `zsh-completions`
@@ -141,6 +148,100 @@ chezmoi apply
 
 chezmoi will automatically run `brew bundle install` when the Brewfile changes!
 
+## Terminal Setup
+
+### Alacritty + Starship
+
+This setup includes a beautiful, fast terminal experience with:
+
+**Alacritty** - GPU-accelerated terminal emulator
+- Tokyo Night color scheme
+- Fira Code Nerd Font (11pt)
+- Optimized for performance
+- Configuration: `~/.config/alacritty/alacritty.toml`
+
+**Starship** - Modern, customizable prompt
+- Tokyo Night theme with colored segments
+- Shows git status when in a repository
+- Displays language versions (Python, Node, Rust, Go, PHP)
+- Virtual environment detection for Python
+- Battery status and current time
+- Smart directory path truncation
+- Configuration: `~/.config/starship.toml`
+
+**Features:**
+- 🎨 Consistent Tokyo Night theme across terminal and prompt
+- 🔤 Nerd Font icons for beautiful symbols
+- 🚀 Fast and responsive
+- 🔋 Battery indicator (with color-coded status)
+- 🐍 Python virtual environment detection
+- 🌳 Git branch and status when in repos
+- 📁 Smart directory navigation with icon substitutions
+
+### Customizing the Terminal
+
+#### Change Alacritty colors or font:
+```bash
+chezmoi edit ~/.config/alacritty/alacritty.toml
+
+# Modify font size, colors, or window settings
+# Then apply
+chezmoi apply
+```
+
+#### Customize Starship prompt:
+```bash
+chezmoi edit ~/.config/starship.toml
+
+# Add/remove modules, change colors, or modify layout
+# Changes apply immediately (live reload enabled)
+```
+
+#### Add more language modules:
+Uncomment modules in `starship.toml`:
+```toml
+[docker_context]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol $context ](fg:#769ff0 bg:#212736)]($style)'
+```
+
+#### Switch to a different Starship preset:
+```bash
+# List available presets
+starship preset --list
+
+# Preview a preset
+starship preset <name>
+
+# Apply a preset
+starship preset <name> > ~/.config/starship.toml
+```
+
+### Troubleshooting Terminal Issues
+
+#### Font icons not showing:
+- Verify Fira Code Nerd Font is installed: `ls ~/Library/Fonts/ | grep Fira`
+- Make sure Alacritty is using the correct font (check `alacritty.toml`)
+- Restart Alacritty after font changes
+
+#### Prompt not loading:
+```bash
+# Test Starship
+starship --version
+
+# Check if prompt.zsh exists
+cat ~/.config/zsh/env/prompt.zsh
+
+# Re-source zshrc
+source ~/.zshrc
+```
+
+#### Colors look wrong:
+- Ensure terminal is using true color
+- Check Alacritty config opacity settings
+- Verify Tokyo Night colors in `alacritty.toml`
+
 ## Customization
 
 ### Adding Aliases
@@ -162,20 +263,51 @@ chezmoi apply
 source ~/.zshrc
 ```
 
+### Adding Environment Variables
+
+Environment variables are in `.config/zsh/env/`:
+
+```bash
+# Edit existing environment files
+chezmoi edit ~/.config/zsh/env/colors.zsh
+chezmoi edit ~/.config/zsh/env/history.zsh
+chezmoi edit ~/.config/zsh/env/prompt.zsh
+
+# Create a new environment file
+chezmoi add ~/.config/zsh/env/development.zsh
+
+# Add your environment variables
+export EDITOR="code"
+export VISUAL="code"
+export PAGER="less"
+
+# Apply changes
+chezmoi apply
+source ~/.zshrc
+```
+
+**Example use cases:**
+- `development.zsh` - Editor, pager, and development tool configs
+- `tools.zsh` - Tool-specific configurations
+- `api-keys.zsh` - API keys (consider using chezmoi templates for secrets)
+
 ### Machine-Specific Configs
 
 Use `.zshrc.local` for machine-specific settings (not tracked in git):
 
 ```bash
-# In ~/.zshrc.local
+# In ~/.zshrc.local (create this file manually, not tracked)
 export WORK_API_KEY="secret-key"
 export OPENAI_API_KEY="sk-..."
+export CUSTOM_PATH="/path/to/something"
 ```
 
 Or use chezmoi templates for tracked machine-specific configs:
 ```bash
 chezmoi edit --config
 ```
+
+**Note:** The `.zshrc.local` file is automatically sourced if it exists, making it perfect for machine-specific environment variables, aliases, or configurations that shouldn't be committed to git.
 
 ## Advanced Usage
 
