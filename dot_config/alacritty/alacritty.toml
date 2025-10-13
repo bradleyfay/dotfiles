@@ -1,0 +1,161 @@
+# Alacritty Configuration
+# Tokyo Night theme with Fira Code Nerd Font
+
+# Import Tokyo Night colors
+# Colors scheme inspired by Tokyo Night VS Code theme
+[colors.primary]
+background = '#1a1b26'
+foreground = '#c0caf5'
+
+[colors.normal]
+black   = '#15161e'
+red     = '#f7768e'
+green   = '#9ece6a'
+yellow  = '#e0af68'
+blue    = '#7aa2f7'
+magenta = '#bb9af7'
+cyan    = '#7dcfff'
+white   = '#a9b1d6'
+
+[colors.bright]
+black   = '#414868'
+red     = '#f7768e'
+green   = '#9ece6a'
+yellow  = '#e0af68'
+blue    = '#7aa2f7'
+magenta = '#bb9af7'
+cyan    = '#7dcfff'
+white   = '#c0caf5'
+
+# Selection colors
+[colors.selection]
+text       = '#c0caf5'
+background = '#33467c'
+
+# Selection behavior
+[selection]
+save_to_clipboard = true
+
+# Cursor colors
+[colors.cursor]
+text   = '#1a1b26'
+cursor = '#c0caf5'
+
+# Font configuration
+[font]
+size = 11.0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style  = "Regular"
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style  = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font"
+style  = "Italic"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+style  = "Bold Italic"
+
+# Window configuration
+[window]
+opacity = 0.95
+blur = true
+decorations = "full"
+dynamic_padding = true
+startup_mode = "Windowed"
+
+[window.padding]
+x = 8
+y = 8
+
+[window.dimensions]
+columns = 120
+lines = 40
+
+# Scrolling
+[scrolling]
+history = 10000
+multiplier = 3
+
+# Terminal
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l"]
+
+# Cursor
+[cursor]
+blink_interval = 750
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+# Bell
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = '#ffffff'
+
+# Mouse bindings
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse = "Right"
+action = "Paste"
+
+# Key bindings
+[[keyboard.bindings]]
+key = "N"
+mods = "Command"
+action = "CreateNewWindow"
+
+[[keyboard.bindings]]
+key = "Q"
+mods = "Command"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "W"
+mods = "Command"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Command"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Command"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Command"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Command"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Command"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Command"
+action = "SearchForward"
+
+[[keyboard.bindings]]
+key = "K"
+mods = "Command"
+action = "ClearHistory"
