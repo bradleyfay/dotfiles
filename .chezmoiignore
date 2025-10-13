@@ -1,0 +1,6 @@
+# .chezmoiignore - Files/directories to not apply to home directory
+
+README.md
+REFERENCE.md
+LICENSE
+.git*
