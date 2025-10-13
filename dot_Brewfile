@@ -3,9 +3,6 @@
 # Install with: brew bundle install
 # Update with: brew bundle install --cleanup
 
-# Taps
-tap "homebrew/bundle"
-
 # Core Development Tools
 brew "git"
 brew "jq"              # JSON processor
@@ -26,6 +23,7 @@ brew "hyperfine"       # Benchmarking tool
 brew "tokei"           # Code statistics
 
 # Shell Enhancements
+brew "starship"            # Modern cross-shell prompt
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh-completions"
@@ -44,14 +42,19 @@ brew "chezmoi"         # Dotfiles manager
 # brew "docker"        # Container runtime
 
 # GUI Applications (casks)
+cask "alacritty"           # GPU-accelerated terminal
+
+# Optional GUI Applications
 # Uncomment the ones you need
 # cask "visual-studio-code"
 # cask "iterm2"
-# cask "alacritty"
 # cask "firefox"
 # cask "google-chrome"
 # cask "slack"
 # cask "docker"
+
+# Fonts
+cask "font-fira-code-nerd-font"  # Programming font with ligatures and icons
 
 # Mac App Store apps (requires mas CLI)
 # brew "mas"
