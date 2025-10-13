@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# run_onchange_before_install-packages.sh.tmpl
+# This script runs whenever the Brewfile changes
+# It installs/updates packages via Homebrew Bundle
+
+set -e
+
+echo "🍺 Installing/updating Homebrew packages..."
+
+# Check if Homebrew is installed
+if ! command -v brew &> /dev/null; then
+    echo "❌ Homebrew not found. Please install Homebrew first:"
+    echo "   /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+    exit 1
+fi
+
+# Update Homebrew
+echo "📦 Updating Homebrew..."
+brew update
+
+# Install packages from Brewfile
+echo "📦 Installing packages from Brewfile..."
+brew bundle install --global --no-lock
+
+# Cleanup old packages
+echo "🧹 Cleaning up old packages..."
+brew cleanup
+
+echo "✅ Package installation complete!"
+
+# Brewfile hash: {{ include "dot_Brewfile" | sha256sum }}

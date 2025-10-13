@@ -1,0 +1,58 @@
+# Brewfile - Homebrew Bundle for dotfiles
+# This file manages all packages, casks, and applications
+# Install with: brew bundle install
+# Update with: brew bundle install --cleanup
+
+# Taps
+tap "homebrew/bundle"
+
+# Core Development Tools
+brew "git"
+brew "jq"              # JSON processor
+brew "yq"              # YAML processor
+
+# Modern CLI Tools (Rust-based replacements)
+brew "ripgrep"         # Better grep (rg)
+brew "fd"              # Better find
+brew "bat"             # Better cat with syntax highlighting
+brew "eza"             # Better ls
+brew "zoxide"          # Smart cd that learns your habits
+brew "fzf"             # Fuzzy finder
+brew "dust"            # Better du (disk usage)
+brew "bottom"          # Better top (btm)
+brew "procs"           # Better ps
+brew "sd"              # Better sed
+brew "hyperfine"       # Benchmarking tool
+brew "tokei"           # Code statistics
+
+# Shell Enhancements
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "zsh-completions"
+
+# File Management
+brew "trash"           # Safe rm alternative
+
+# Development Tools
+brew "direnv"          # Environment switcher
+brew "chezmoi"         # Dotfiles manager
+
+# Optional: Uncomment if you need these
+# brew "neovim"        # Modern vim
+# brew "tmux"          # Terminal multiplexer
+# brew "gh"            # GitHub CLI
+# brew "docker"        # Container runtime
+
+# GUI Applications (casks)
+# Uncomment the ones you need
+# cask "visual-studio-code"
+# cask "iterm2"
+# cask "alacritty"
+# cask "firefox"
+# cask "google-chrome"
+# cask "slack"
+# cask "docker"
+
+# Mac App Store apps (requires mas CLI)
+# brew "mas"
+# mas "Xcode", id: 497799835
