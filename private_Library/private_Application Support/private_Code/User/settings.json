@@ -1,0 +1,81 @@
+{
+  "workbench.colorTheme": "Tokyo Night",
+  "python.analysis.typeCheckingMode": "standard",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.files.associations": {
+    "CLAUDE.md": "claude",
+    "HOW_TO_WORK.md": "label",
+    "IDEAS.md": "bicep",
+  },
+  "material-icon-theme.folders.associations": {
+    "learning-lab": "home",
+    "autodoc-mcp": "python",
+    "autodocs": "archive",
+    ".specstory": "log",
+    "claude-code-dev-environment": "vscode",
+    "intention-driven-planning": "routes",
+    "claude-code-journey": "docs",
+    "agenticlearninglab.dev": "home",
+    "execution-planning": "routes"
+  },
+  "files.associations": {
+    ".claude/*.json": "jsonc",
+    ".claude/**/*.json": "jsonc",
+    "**/settings.local.json": "jsonc"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        ".claude/*.json",
+        ".claude/**/*.json",
+        "**/settings.local.json"
+      ],
+      "schema": false
+    }
+  ],
+  "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+  "chat.agent.enabled": false,
+  // Tokyo Night Terminal Colors - Matching Alacritty
+  "workbench.colorCustomizations": {
+    "terminal.background": "#1a1b26",
+    "terminal.foreground": "#c0caf5",
+    "terminal.ansiBlack": "#15161e",
+    "terminal.ansiRed": "#f7768e",
+    "terminal.ansiGreen": "#9ece6a",
+    "terminal.ansiYellow": "#e0af68",
+    "terminal.ansiBlue": "#7aa2f7",
+    "terminal.ansiMagenta": "#bb9af7",
+    "terminal.ansiCyan": "#7dcfff",
+    "terminal.ansiWhite": "#a9b1d6",
+    "terminal.ansiBrightBlack": "#414868",
+    "terminal.ansiBrightRed": "#f7768e",
+    "terminal.ansiBrightGreen": "#9ece6a",
+    "terminal.ansiBrightYellow": "#e0af68",
+    "terminal.ansiBrightBlue": "#7aa2f7",
+    "terminal.ansiBrightMagenta": "#bb9af7",
+    "terminal.ansiBrightCyan": "#7dcfff",
+    "terminal.ansiBrightWhite": "#c0caf5",
+    "terminal.selectionBackground": "#28344a",
+    "terminalCursor.background": "#1a1b26",
+    "terminalCursor.foreground": "#c0caf5"
+  },
+  // Terminal Configuration - Matching Alacritty
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.fontSize": 11,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.fontWeightBold": "bold",
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.letterSpacing": 0,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.rightClickBehavior": "paste",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "editor.fontFamily": "FiraCode Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14
+}
