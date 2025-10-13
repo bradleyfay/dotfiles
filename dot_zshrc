@@ -7,6 +7,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Personal bin directories
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
+# Basic completion (must be initialized before tools that use compdef)
+autoload -Uz compinit
+compinit
+
 # Dynamic environment variable loading
 # Environment variables are now stored in ~/.config/zsh/env/*.zsh
 source "$HOME/.config/zsh/load-env.zsh"
@@ -15,10 +19,6 @@ source "$HOME/.config/zsh/load-env.zsh"
 # Aliases are now stored in ~/.config/zsh/aliases/*.zsh
 # They auto-reload before each prompt (or manually with 'reload-aliases')
 source "$HOME/.config/zsh/load-aliases.zsh"
-
-# Basic completion
-autoload -Uz compinit
-compinit
 
 # Local machine-specific overrides (not tracked in git)
 if [ -f "$HOME/.zshrc.local" ]; then
