@@ -1,0 +1,170 @@
+# Git Configuration
+# Managed by chezmoi - edit with: chezmoi edit ~/.config/git/config
+
+[user]
+	name = Bradley Fay
+	email = bradley.fay@gmail.com
+	# For work machine, use chezmoi template to set: bfay@draftkings.com
+
+[core]
+	# Editor for commit messages, rebases, etc.
+	editor = code --wait
+
+	# Global gitignore file
+	excludesfile = ~/.config/git/ignore
+
+	# Auto-correct typos after 1.5 seconds
+	autocrlf = input
+
+	# Treat spaces at EOL and whitespace before tabs as errors
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+	# Use custom .gitattributes for line endings
+	attributesfile = ~/.config/git/attributes
+
+	# Use git-delta for better diffs (install with: brew install git-delta)
+	pager = delta
+
+[init]
+	# Default branch name for new repositories
+	defaultBranch = main
+
+[pull]
+	# Default pull strategy (rebase keeps history cleaner)
+	rebase = false  # Set to 'true' for rebase, 'false' for merge
+
+[push]
+	# Push current branch to branch with same name
+	default = simple
+
+	# Push tags automatically with commits
+	followTags = true
+
+	# Auto-setup remote tracking for new branches
+	autoSetupRemote = true
+
+[fetch]
+	# Remove deleted remote branches
+	prune = true
+
+	# Fetch tags by default
+	pruneTags = false
+
+[merge]
+	# Include summaries of merged commits in merge commit messages
+	log = true
+
+	# Conflict style: merge, diff3, zdiff3
+	conflictstyle = diff3
+
+	# Tool for resolving merge conflicts
+	# tool = vscode
+
+[diff]
+	# Detect renames and copies
+	renames = copies
+
+	# Use better algorithm for diffs
+	algorithm = histogram
+
+	# Show submodule changes
+	submodule = log
+
+	# Color moved lines differently
+	colorMoved = default
+
+[color]
+	# Enable colors in output
+	ui = auto
+
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+
+[credential]
+	# macOS Keychain for password storage
+	helper = osxkeychain
+
+[filter "lfs"]
+	# Git LFS (Large File Storage)
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[alias]
+	# Status shortcuts
+	st = status
+	s = status --short
+
+	# Branch shortcuts
+	br = branch
+	branches = branch -av
+
+	# Commit shortcuts
+	ci = commit
+	amend = commit --amend
+	undo = reset HEAD~1 --mixed
+
+	# Checkout shortcuts
+	co = checkout
+	cob = checkout -b
+
+	# Log shortcuts
+	l = log --oneline --decorate
+	lg = log --graph --oneline --decorate --all
+	last = log -1 HEAD --stat
+
+	# Diff shortcuts
+	d = diff
+	dc = diff --cached
+
+	# Stash shortcuts
+	stash-all = stash save --include-untracked
+
+	# Misc shortcuts
+	unstage = reset -q HEAD --
+	discard = checkout --
+	uncommit = reset --mixed HEAD~
+	remotes = remote -v
+
+[interactive]
+	# Use delta for interactive commands (add -p, rebase -i, etc.)
+	diffFilter = delta --color-only
+
+[delta]
+	# Enable navigation with n/N keys
+	navigate = true
+
+	# Dark theme (matches Tokyo Night)
+	dark = true
+	light = false
+
+	# Side-by-side view for better comparison
+	side-by-side = true
+
+	# Show line numbers
+	line-numbers = true
+
+	# Syntax highlighting theme
+	syntax-theme = TwoDark
+
+	# Show file names in diff
+	file-style = bold yellow
+
+	# Highlight moved code
+	features = decorations
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box
+	file-style = bold yellow ul
+	file-decoration-style = none
+	hunk-header-decoration-style = cyan box

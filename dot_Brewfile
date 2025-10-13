@@ -34,11 +34,12 @@ brew "trash"           # Safe rm alternative
 # Development Tools
 brew "direnv"          # Environment switcher
 brew "chezmoi"         # Dotfiles manager
+brew "gh"              # GitHub CLI
+brew "git-delta"       # Better git diffs with syntax highlighting
 
 # Optional: Uncomment if you need these
 # brew "neovim"        # Modern vim
 # brew "tmux"          # Terminal multiplexer
-# brew "gh"            # GitHub CLI
 # brew "docker"        # Container runtime
 
 # GUI Applications (casks)
@@ -46,10 +47,10 @@ cask "alacritty"           # GPU-accelerated terminal
 
 # Optional GUI Applications
 # Uncomment the ones you need
-# cask "visual-studio-code"
+cask "visual-studio-code"
+cask "google-chrome"
 # cask "iterm2"
 # cask "firefox"
-# cask "google-chrome"
 # cask "slack"
 # cask "docker"
 
