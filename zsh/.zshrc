@@ -1,12 +1,16 @@
 # .zshrc - Minimal Zsh configuration
 
-# Set up basic path
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
+# Set up PATH with Homebrew and common development paths
+# Homebrew (Apple Silicon)
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Basic aliases
-alias ll='ls -lah'
-alias la='ls -A'
-alias l='ls -CF'
+# Personal bin directory
+export PATH="$HOME/bin:$PATH"
+
+# Dynamic alias loading
+# Aliases are now stored in ~/.config/zsh/aliases/*.zsh
+# They auto-reload before each prompt (or manually with 'reload-aliases')
+source "$HOME/.config/zsh/load-aliases.zsh"
 
 # Enable colors
 export CLICOLOR=1
