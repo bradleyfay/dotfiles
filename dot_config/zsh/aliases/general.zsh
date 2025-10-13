@@ -1,4 +1,2 @@
 # General aliases
-alias ll='ls -lah'
-alias la='ls -A'
-alias l='ls -CF'
+# Note: ll, la, l, ls aliases are now defined in eza.zsh
