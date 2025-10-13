@@ -111,6 +111,27 @@ lsd
 | `ls -lS` | `lS` | Sort by size |
 | `tree` | `tree` | Tree view |
 
+## Custom Icons (theme.yml)
+
+We've configured custom icon mappings for chezmoi dotfiles:
+
+**Chezmoi Pattern** → **Icon** (same as actual dotfile)
+- `dot_zshrc` → 󰡯 (zsh icon, same as `.zshrc`)
+- `dot_bashrc` → 󱆃 (bash icon, same as `.bashrc`)
+- `dot_gitconfig` → 󰊢 (git icon, same as `.gitconfig`)
+- `dot_gitignore` → 󰊢 (git icon, same as `.gitignore`)
+- `dot_Brewfile` → 󱁤 (Homebrew icon)
+- `dot_vimrc` →  (vim icon)
+- `.chezmoiignore`, `.chezmoiattributes` → 󰆍 (chezmoi icon)
+- `*.tmpl` files → 󰗀 (template icon)
+
+The theme configuration is at `~/.config/eza/theme.yml`.
+
+To add more custom icons, edit:
+```bash
+cme ~/.config/eza/theme.yml
+```
+
 ## Dependencies
 
 - Requires Nerd Font (FiraCode Nerd Font installed)

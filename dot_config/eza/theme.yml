@@ -1,0 +1,77 @@
+# Eza theme configuration
+# Custom icon mappings for chezmoi dotfiles and common patterns
+
+filenames:
+  # Chezmoi dotfile patterns (dot_ prefix)
+  # Map these to use the same icons as their actual dotfile equivalents
+
+  # Shell configs
+  dot_zshrc:
+    icon:
+      glyph: 󰡯  # zsh icon
+  dot_bashrc:
+    icon:
+      glyph: 󱆃  # bash icon
+  dot_profile:
+    icon:
+      glyph: 󰆍  # profile icon
+
+  # Git configs
+  dot_gitconfig:
+    icon:
+      glyph: 󰊢  # git icon
+  dot_gitignore:
+    icon:
+      glyph: 󰊢  # git icon
+  dot_gitattributes:
+    icon:
+      glyph: 󰊢  # git icon
+
+  # Package managers
+  dot_Brewfile:
+    icon:
+      glyph: 󱁤  # Homebrew icon
+
+  # Editor configs
+  dot_vimrc:
+    icon:
+      glyph:   # vim icon
+  dot_editorconfig:
+    icon:
+      glyph:   # config icon
+
+  # Chezmoi special files
+  ".chezmoiignore":
+    icon:
+      glyph: 󰆍  # chezmoi icon
+  ".chezmoiattributes":
+    icon:
+      glyph: 󰆍  # chezmoi icon
+  ".chezmoiexternal.toml":
+    icon:
+      glyph: 󰆍  # chezmoi icon
+  ".chezmoitemplates":
+    icon:
+      glyph: 󰆍  # chezmoi icon
+
+  # Common dotfiles with dot_ prefix
+  dot_tmux.conf:
+    icon:
+      glyph: 󰒓  # tmux icon
+  dot_inputrc:
+    icon:
+      glyph: ⌨  # keyboard icon
+  dot_curlrc:
+    icon:
+      glyph:   # terminal icon
+  dot_wgetrc:
+    icon:
+      glyph:   # terminal icon
+
+# Extensions for template files
+extensions:
+  tmpl:
+    icon:
+      glyph: 󰗀  # template icon
+      style:
+        foreground: Yellow
