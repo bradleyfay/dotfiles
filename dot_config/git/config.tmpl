@@ -3,8 +3,11 @@
 
 [user]
 	name = Bradley Fay
+{{- if eq .machine_type "work" }}
+	email = bfay@draftkings.com
+{{- else }}
 	email = bradley.fay@gmail.com
-	# For work machine, use chezmoi template to set: bfay@draftkings.com
+{{- end }}
 
 [core]
 	# Editor for commit messages, rebases, etc.
@@ -135,6 +138,16 @@
 	discard = checkout --
 	uncommit = reset --mixed HEAD~
 	remotes = remote -v
+{{- if eq .machine_type "work" }}
+
+	# Work-specific aliases for internal Bitbucket
+	# Clone from internal Bitbucket (usage: git bbclone <project>/<repo>)
+	# TODO: Update with your actual Bitbucket URL pattern
+	# bbclone = "!f() { git clone ssh://git@bitbucket.company.com/$1.git; }; f"
+
+	# Add internal Bitbucket remote (usage: git bbadd <project>/<repo>)
+	# bbadd = "!f() { git remote add origin ssh://git@bitbucket.company.com/$1.git; }; f"
+{{- end }}
 
 [interactive]
 	# Use delta for interactive commands (add -p, rebase -i, etc.)
