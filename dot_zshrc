@@ -7,6 +7,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Personal bin directories
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
+# zsh-completions - add to fpath before compinit
+if [ -d /opt/homebrew/share/zsh-completions ]; then
+    fpath=(/opt/homebrew/share/zsh-completions $fpath)
+fi
+
 # Basic completion (must be initialized before tools that use compdef)
 autoload -Uz compinit
 compinit
@@ -23,4 +28,10 @@ source "$HOME/.config/zsh/load-aliases.zsh"
 # Local machine-specific overrides (not tracked in git)
 if [ -f "$HOME/.zshrc.local" ]; then
     source "$HOME/.zshrc.local"
+fi
+
+# zsh-syntax-highlighting - MUST be sourced last
+# Highlights commands in green (valid) or red (invalid)
+if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
