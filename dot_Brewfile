@@ -32,7 +32,7 @@ brew "zsh-completions"
 brew "trash"           # Safe rm alternative
 
 # Development Tools
-brew "direnv"          # Environment switcher
+brew "uv"              # Fast Python package installer and resolver
 brew "chezmoi"         # Dotfiles manager
 brew "gh"              # GitHub CLI
 brew "git-delta"       # Better git diffs with syntax highlighting
