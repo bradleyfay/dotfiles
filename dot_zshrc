@@ -4,25 +4,17 @@
 # Homebrew (Apple Silicon)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Personal bin directory
-export PATH="$HOME/bin:$PATH"
+# Personal bin directories
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# Dynamic environment variable loading
+# Environment variables are now stored in ~/.config/zsh/env/*.zsh
+source "$HOME/.config/zsh/load-env.zsh"
 
 # Dynamic alias loading
 # Aliases are now stored in ~/.config/zsh/aliases/*.zsh
 # They auto-reload before each prompt (or manually with 'reload-aliases')
 source "$HOME/.config/zsh/load-aliases.zsh"
-
-# Enable colors
-export CLICOLOR=1
-export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
-
-# History configuration
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
 
 # Basic completion
 autoload -Uz compinit
