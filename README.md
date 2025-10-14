@@ -184,35 +184,35 @@ git-init-existing ~/code # Apply hooks to all repos in ~/code
 ### Installed Packages (via Brewfile)
 
 **Modern CLI Tools:**
-- `ripgrep` (rg) - Better grep
-- `fd` - Better find
-- `bat` - Better cat with syntax highlighting
-- `eza` - Better ls with icons
-- `zoxide` (z) - Smart cd that learns your habits
-- `fzf` - Fuzzy finder
-- `dust` - Better du (disk usage)
-- `bottom` (btm) - Better top
-- `procs` - Better ps
-- `sd` - Better sed
-- `hyperfine` - Benchmarking
-- `tokei` - Code statistics
+- [`ripgrep`](https://github.com/BurntSushi/ripgrep) (rg) - Better grep
+- [`fd`](https://github.com/sharkdp/fd) - Better find
+- [`bat`](https://github.com/sharkdp/bat) - Better cat with syntax highlighting
+- [`eza`](https://github.com/eza-community/eza) - Better ls with icons
+- [`zoxide`](https://github.com/ajeetdsouza/zoxide) (z) - Smart cd that learns your habits
+- [`fzf`](https://github.com/junegunn/fzf) - Fuzzy finder
+- [`dust`](https://github.com/bootandy/dust) - Better du (disk usage)
+- [`bottom`](https://github.com/ClementTsang/bottom) (btm) - Better top
+- [`procs`](https://github.com/dalance/procs) - Better ps
+- [`sd`](https://github.com/chmln/sd) - Better sed
+- [`hyperfine`](https://github.com/sharkdp/hyperfine) - Benchmarking
+- [`tokei`](https://github.com/XAMPPRocky/tokei) - Code statistics
 
 **Development Tools:**
-- `git`, `jq`, `yq` - Core tools
-- `gh` - GitHub CLI
-- `git-delta` - Better git diffs
-- `pre-commit` - Git pre-commit framework
-- `age` - Modern file encryption
-- `uv` - Fast Python package installer
-- `trash` - Safe rm alternative
+- [`git`](https://git-scm.com/), [`jq`](https://jqlang.github.io/jq/), [`yq`](https://github.com/mikefarah/yq) - Core tools
+- [`gh`](https://cli.github.com/) - GitHub CLI
+- [`git-delta`](https://github.com/dandavison/delta) - Better git diffs
+- [`pre-commit`](https://pre-commit.com/) - Git pre-commit framework
+- [`age`](https://github.com/FiloSottile/age) - Modern file encryption
+- [`uv`](https://github.com/astral-sh/uv) - Fast Python package installer
+- [`trash`](https://github.com/ali-rantakari/trash) - Safe rm alternative
 
 **Shell & Terminal:**
-- `starship` - Modern cross-shell prompt
-- `alacritty` - GPU-accelerated terminal
-- `font-fira-code-nerd-font` - Programming font with ligatures and icons
-- `zsh-autosuggestions` - Fish-like command suggestions (gray text)
-- `zsh-syntax-highlighting` - Command syntax highlighting (green/red)
-- `zsh-completions` - Enhanced tab completions
+- [`starship`](https://starship.rs/) - Modern cross-shell prompt
+- [`alacritty`](https://alacritty.org/) - GPU-accelerated terminal
+- [`font-fira-code-nerd-font`](https://www.nerdfonts.com/) - Programming font with ligatures and icons
+- [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions) - Fish-like command suggestions (gray text)
+- [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting) - Command syntax highlighting (green/red)
+- [`zsh-completions`](https://github.com/zsh-users/zsh-completions) - Enhanced tab completions
 
 ## Daily Usage
 
