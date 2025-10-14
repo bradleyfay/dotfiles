@@ -36,19 +36,34 @@ if command -v jq &> /dev/null; then
     }
 fi
 
-# Method 2: Strip comments manually (if jq not available)
-echo "jq not found, using manual comment stripping..."
+# Method 2: Strip comments using Python (more reliable than sed)
+if command -v python3 &> /dev/null; then
+    echo "Stripping comments with Python..."
+    python3 << 'PYTHON_EOF' > "$OUTPUT"
+import json
+import re
 
-# Remove:
-# - // comments (but not in strings)
-# - /* */ block comments
-# - Trailing commas before }
-sed -e 's|//.*$||' \
-    -e '/\/\*/,/\*\//d' \
-    -e 's/,\s*\([}\]]\)/\1/g' \
-    "$INPUT" | \
-    # Remove empty lines
-    grep -v '^[[:space:]]*$' > "$OUTPUT"
+with open("$INPUT") as f:
+    text = f.read()
+
+# Remove // comments
+text = re.sub(r'//.*$', '', text, flags=re.MULTILINE)
+
+# Remove /* */ comments
+text = re.sub(r'/\*.*?\*/', '', text, flags=re.DOTALL)
+
+# Parse and pretty-print to fix trailing commas and formatting
+data = json.loads(text)
+print(json.dumps(data, indent=2))
+PYTHON_EOF
+else
+    # Fallback: Manual sed stripping (less reliable)
+    echo "Python not found, using sed..."
+    sed -e 's|//.*$||' \
+        -e '/\/\*/,/\*\//d' \
+        "$INPUT" | \
+        grep -v '^[[:space:]]*$' > "$OUTPUT"
+fi
 
 echo -e "${GREEN}✓ Generated settings.json${NC}"
 echo ""
