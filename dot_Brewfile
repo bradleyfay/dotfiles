@@ -37,6 +37,7 @@ brew "chezmoi"         # Dotfiles manager
 brew "gh"              # GitHub CLI
 brew "git-delta"       # Better git diffs with syntax highlighting
 brew "pre-commit"      # Git pre-commit hooks framework
+brew "age"             # Modern file encryption tool (for secrets in dotfiles)
 brew "specstoryai/tap/specstory"  # SpecStory CLI for AI conversation tracking
 
 # Optional: Uncomment if you need these
