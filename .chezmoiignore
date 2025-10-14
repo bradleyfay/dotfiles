@@ -4,6 +4,8 @@ README.md
 REFERENCE.md
 LICENSE
 SECRETS.md
+MACOS.md
+SECURITY.md
 install.sh
 .git*
 !.git-template/
@@ -19,3 +21,16 @@ install.sh
 id_rsa
 id_ed25519
 credentials.json
+
+# Claude Code: Exclude local/runtime data (only sync settings & statuslines)
+.claude/settings.local.json
+.claude/history.jsonl
+.claude/debug/
+.claude/downloads/
+.claude/file-history/
+.claude/ide/
+.claude/plugins/
+.claude/projects/
+.claude/shell-snapshots/
+.claude/statsig/
+.claude/todos/
