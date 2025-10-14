@@ -67,6 +67,9 @@ brew bundle install --global
 - **Applied files:** `~/` (home directory)
 - **Brewfile:** `~/.Brewfile`
 - **zsh config:** `~/.zshrc` and `~/.config/zsh/`
+- **starship config:** `~/.config/starship.toml`
+- **eza config:** `~/.config/eza/theme.yml`
+- **alacritty config:** `~/.config/alacritty/alacritty.toml`
 
 ## Naming Convention
 
@@ -112,6 +115,27 @@ rm -rf ~/.local/share/chezmoi
 chezmoi init --apply git@github.com:bradleyfay/dotfiles.git
 ```
 
+## Zsh Plugins
+
+Installed and configured via Homebrew:
+
+### zsh-autosuggestions
+- Fish-like autosuggestions based on history
+- Gray suggestions appear as you type
+- Accept with → (right arrow)
+- Configuration: `~/.config/zsh/env/zsh-plugins.zsh`
+
+### zsh-syntax-highlighting
+- Highlights commands in real-time
+- Green = valid command
+- Red = invalid command
+- Must be sourced last in `.zshrc`
+
+### zsh-completions
+- Additional completion definitions for many tools
+- Added to fpath before compinit
+- Enhances tab completion
+
 ## Useful Aliases
 
 From `.config/zsh/aliases/`:
@@ -120,11 +144,17 @@ From `.config/zsh/aliases/`:
 - `..` → `cd ..`
 - `...` → `cd ../..`
 - `....` → `cd ../../..`
+- `~` → `cd ~`
 
-### File Operations
-- `ll` → `ls -alh`
-- `la` → `ls -A`
-- `l` → `ls -CF`
+### File Operations (eza)
+- `ls` → `eza --icons` (with icons)
+- `ll` → `eza -l` (long format)
+- `la` → `eza -la` (long with hidden)
+- `l` → `eza -lah` (most common)
+- `lt` → `eza -l --sort=modified` (sort by time)
+- `lS` → `eza -l --sort=size` (sort by size)
+- `tree` → `eza --tree` (tree view)
+- `lg` → `eza -l --git` (with git status)
 
 ### Git
 - `gs` → `git status`
@@ -133,11 +163,24 @@ From `.config/zsh/aliases/`:
 - `gp` → `git push`
 - `gl` → `git log --oneline --graph --all`
 
-### Modern Tools
-- `cat` → `bat` (if installed)
-- `ls` → `eza` (if installed)
-- `find` → `fd` (if installed)
-- `cd` → `z` (zoxide, if installed)
+### Chezmoi
+- `cm` → `chezmoi`
+- `cma` → `chezmoi apply`
+- `cmd` → `chezmoi diff`
+- `cme` → `chezmoi edit`
+- `cms` → `chezmoi status`
+- `cmu` → `chezmoi update`
+- `cmcd` → `chezmoi cd`
+
+### VS Code
+- `c` → `code .`
+- `co` → `code .`
+
+### Trash (safe rm)
+- `trash` → Safe delete command
+- `trash-list` → List trashed files
+- `trash-restore` → Restore from trash
+- `trash-empty` → Empty trash
 
 ## Scripts
 
@@ -146,6 +189,11 @@ From `.config/zsh/aliases/`:
   - Auto-installs packages when Brewfile changes
   - Runs `brew bundle install --global`
 
+### macOS-specific setup
+- `run_onchange_after_setup-eza-theme-macos.sh.tmpl`
+  - Creates symlink for eza theme on macOS
+  - Links `~/.config/eza/theme.yml` → `~/Library/Application Support/eza/theme.yml`
+
 ## Tips
 
 1. **Use templates** for machine-specific configs
@@ -153,6 +201,11 @@ From `.config/zsh/aliases/`:
 3. **Use scripts** for automated setup
 4. **Commit often** to track changes
 5. **Test on a fresh machine** to verify setup works
+6. **Use `chezmoi edit`** instead of editing files directly
+7. **Always run `chezmoi apply`** after making changes in the source directory
+8. **Check `chezmoi diff`** before applying to see what will change
+9. **Use `.zshrc.local`** for machine-specific settings not tracked in git
+10. **Aliases auto-reload** before each prompt (or manually with `reload-aliases`)
 
 ## Learn More
 

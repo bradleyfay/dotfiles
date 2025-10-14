@@ -82,14 +82,15 @@ exit                 # Return to previous directory
 
 ### Managed Files
 
-- `.zshrc` - Shell configuration
+- `.zshrc` - Shell configuration with plugin loading
 - `.config/zsh/` - Modular zsh configs
-  - `aliases/` - Organized aliases (general, git, navigation)
-  - `env/` - Environment variables (colors, history, prompt)
+  - `aliases/` - Organized aliases (chezmoi, eza, general, git, navigation, trash, vscode)
+  - `env/` - Environment variables (chezmoi, colors, editor, eza, git, history, navigation, prompt, python, tools, zsh-plugins)
   - `load-aliases.zsh` - Auto-reload alias system
   - `load-env.zsh` - Environment variable loader
 - `.config/alacritty/` - Terminal configuration (Tokyo Night theme)
 - `.config/starship.toml` - Prompt configuration (Tokyo Night with custom modules)
+- `.config/eza/` - Modern ls replacement configuration with custom icons
 - `.Brewfile` - All your packages and applications
 
 ### Installed Tools (via Brewfile)
@@ -117,9 +118,9 @@ exit                 # Return to previous directory
 - `starship` - Modern cross-shell prompt
 - `alacritty` - GPU-accelerated terminal
 - `font-fira-code-nerd-font` - Programming font with ligatures and icons
-- `zsh-autosuggestions`
-- `zsh-syntax-highlighting`
-- `zsh-completions`
+- `zsh-autosuggestions` - Fish-like command suggestions (configured)
+- `zsh-syntax-highlighting` - Command syntax highlighting (configured)
+- `zsh-completions` - Additional completion definitions (configured)
 
 ## Adding More Packages
 
@@ -162,21 +163,42 @@ This setup includes a beautiful, fast terminal experience with:
 
 **Starship** - Modern, customizable prompt
 - Tokyo Night theme with colored segments
-- Shows git status when in a repository
-- Displays language versions (Python, Node, Rust, Go, PHP)
+- Shows git branch and status when in a repository
+- Shows git commit hash when in detached HEAD state
+- Displays language versions (Python, Node.js)
+- Cloud/infrastructure context (Terraform, AWS)
 - Virtual environment detection for Python
-- Battery status and current time
-- Smart directory path truncation
+- Battery status with color-coded indicators
+- Current time display
+- Smart directory path truncation (up to 16 levels)
+- Custom icon substitutions for common directories
 - Configuration: `~/.config/starship.toml`
+
+**Eza** - Modern replacement for ls with icons and colors
+- Custom theme with icon mappings for chezmoi dotfiles
+- macOS-compatible configuration (auto-symlinked)
+- Color-coded file types
+- Git integration showing file status
+- Tree view support
+- Comprehensive aliases (ls, ll, la, l, tree, lg, etc.)
+- Configuration: `~/.config/eza/theme.yml`
+
+**Zsh Plugins** - Enhanced shell experience
+- **zsh-autosuggestions**: Fish-like suggestions as you type (gray text)
+- **zsh-syntax-highlighting**: Green for valid commands, red for invalid
+- **zsh-completions**: Enhanced tab completions for many tools
+- All plugins automatically configured and loaded
 
 **Features:**
 - 🎨 Consistent Tokyo Night theme across terminal and prompt
-- 🔤 Nerd Font icons for beautiful symbols
+- 🔤 Nerd Font icons for beautiful symbols and file types
 - 🚀 Fast and responsive
 - 🔋 Battery indicator (with color-coded status)
 - 🐍 Python virtual environment detection
 - 🌳 Git branch and status when in repos
 - 📁 Smart directory navigation with icon substitutions
+- 💡 Intelligent command suggestions as you type
+- ✨ Syntax highlighting for commands
 
 ### Customizing the Terminal
 
@@ -194,12 +216,33 @@ chezmoi apply
 chezmoi edit ~/.config/starship.toml
 
 # Add/remove modules, change colors, or modify layout
-# Changes apply immediately (live reload enabled)
+# Then apply changes
+chezmoi apply
+```
+
+#### Customize eza icons and theme:
+```bash
+chezmoi edit ~/.config/eza/theme.yml
+
+# Add custom icon mappings for specific files
+# Find icons at: https://www.nerdfonts.com/cheat-sheet
+
+# Apply changes
+chezmoi apply
+
+# Changes take effect immediately
 ```
 
 #### Add more language modules:
 Uncomment modules in `starship.toml`:
 ```toml
+# Rust
+[rust]
+symbol = " "
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+# Docker
 [docker_context]
 symbol = " "
 style = "bg:#212736"
@@ -235,6 +278,36 @@ cat ~/.config/zsh/env/prompt.zsh
 
 # Re-source zshrc
 source ~/.zshrc
+```
+
+#### Zsh plugins not working:
+```bash
+# Check if plugins are installed
+ls /opt/homebrew/share/ | grep zsh
+
+# Verify plugin configuration
+cat ~/.config/zsh/env/zsh-plugins.zsh
+
+# Check for permission issues
+compaudit
+
+# Re-source zshrc to reload plugins
+source ~/.zshrc
+```
+
+#### Eza icons not showing:
+```bash
+# Verify eza is installed
+eza --version
+
+# Check theme file exists
+cat ~/.config/eza/theme.yml
+
+# On macOS, verify symlink exists
+ls -la ~/Library/Application\ Support/eza/theme.yml
+
+# Test eza with icons
+eza --icons
 ```
 
 #### Colors look wrong:
