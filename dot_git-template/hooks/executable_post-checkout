@@ -1,0 +1,54 @@
+#!/bin/bash
+# Auto-initialize pre-commit configuration if it doesn't exist
+
+# Only run after clone (when checking out from HEAD to HEAD)
+# or when switching branches where .pre-commit-config.yaml doesn't exist
+
+if [ ! -f .pre-commit-config.yaml ]; then
+    echo "No .pre-commit-config.yaml found. Creating minimal pre-commit configuration..."
+
+    cat > .pre-commit-config.yaml << 'EOF'
+# Pre-commit hooks configuration
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Prevent large files from being committed
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+
+      # Check for files that would conflict in case-insensitive filesystems
+      - id: check-case-conflict
+
+      # Ensure files end with a newline
+      - id: end-of-file-fixer
+
+      # Trim trailing whitespace
+      - id: trailing-whitespace
+
+      # Check YAML syntax
+      - id: check-yaml
+
+      # Check JSON syntax
+      - id: check-json
+
+      # Check for merge conflicts
+      - id: check-merge-conflict
+
+      # Don't commit directly to main/master
+      - id: no-commit-to-branch
+        args: ['--branch', 'main', '--branch', 'master']
+EOF
+
+    echo "✓ Created .pre-commit-config.yaml"
+    echo "Run 'pre-commit install' to install the hooks"
+    echo "Run 'pre-commit run --all-files' to test"
+fi
+
+# Always try to install pre-commit hooks if config exists
+if [ -f .pre-commit-config.yaml ] && command -v pre-commit &> /dev/null; then
+    pre-commit install --install-hooks --overwrite &> /dev/null || true
+fi

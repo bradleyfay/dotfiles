@@ -4,3 +4,4 @@ README.md
 REFERENCE.md
 LICENSE
 .git*
+!.git-template/

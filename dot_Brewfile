@@ -36,6 +36,7 @@ brew "uv"              # Fast Python package installer and resolver
 brew "chezmoi"         # Dotfiles manager
 brew "gh"              # GitHub CLI
 brew "git-delta"       # Better git diffs with syntax highlighting
+brew "pre-commit"      # Git pre-commit hooks framework
 brew "specstoryai/tap/specstory"  # SpecStory CLI for AI conversation tracking
 
 # Optional: Uncomment if you need these
