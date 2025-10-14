@@ -3,5 +3,19 @@
 README.md
 REFERENCE.md
 LICENSE
+SECRETS.md
+install.sh
 .git*
 !.git-template/
+
+# Safety: Prevent accidental exposure of unencrypted secrets
+# Only .age encrypted files should be in the repo
+.env
+.env.local
+.env.*.local
+**/secrets/**
+*.key
+*.pem
+id_rsa
+id_ed25519
+credentials.json

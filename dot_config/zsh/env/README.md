@@ -29,6 +29,7 @@ Files are loaded **alphabetically** by `load-env.zsh`. Use numeric prefixes to c
 - `navigation.zsh` - Navigation tools (zoxide configuration)
 - `prompt.zsh` - Prompt initialization (Starship)
 - `python.zsh` - Python-specific environment variables
+- **`secrets.zsh`** - Encrypted secrets (API keys, tokens) - See [SECRETS.md](../../../SECRETS.md)
 - `tools.zsh` - Tool-specific settings (XDG dirs, Homebrew, tool paths)
 - `zsh-plugins.zsh` - Zsh plugin configuration (autosuggestions, etc.)
 
@@ -57,8 +58,30 @@ You might want to create files like:
 - `api-keys.zsh` - API keys (consider using chezmoi templates for secrets)
 - `custom.zsh` - Personal environment variables
 
+## Secrets Management
+
+For sensitive information like API keys, tokens, and credentials:
+
+- Use `secrets.zsh` for encrypted secrets management
+- This file is managed via chezmoi with age encryption
+- See [SECRETS.md](../../../SECRETS.md) for full documentation
+- Example secrets are provided in the template (commented out)
+
+To add encrypted secrets:
+```bash
+# Edit the secrets file
+chezmoi edit ~/.config/zsh/env/secrets.zsh
+
+# Add your secrets (will be auto-encrypted)
+export OPENAI_API_KEY="sk-..."
+export GITHUB_TOKEN="ghp_..."
+
+# Apply changes
+chezmoi apply
+```
+
 ## Note
 
-- These files are loaded once at shell startup (not dynamically like aliases)
-- For machine-specific variables, use `~/.zshrc.local` which is not tracked in git
-- For secrets, consider using chezmoi's secrets management features
+- Environment files are auto-reloaded when modified (checked before each prompt)
+- For machine-specific variables, use `~/.zshrc.local` (not tracked in git)
+- PATH additions use deduplication, so reloading is safe

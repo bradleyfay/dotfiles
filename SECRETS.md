@@ -1,5 +1,32 @@
 # Secrets Management Strategy
 
+## Quick Start
+
+**Your age encryption is already set up!** 🔐
+
+Your age key location: `~/.config/age/key.txt`
+Your public key: `age1y52gpr594kvcs7864pr9vjus9c8acxemzdrc6tg5kjucryf04fusq6mavu`
+
+### Adding Encrypted Secrets
+
+```bash
+# 1. Edit the secrets file (auto-encrypted on save)
+chezmoi edit ~/.config/zsh/env/secrets.zsh
+
+# 2. Add your secrets (uncomment and fill in the examples)
+export OPENAI_API_KEY="sk-..."
+export GITHUB_TOKEN="ghp_..."
+
+# 3. Apply changes (file will be encrypted)
+chezmoi apply
+
+# 4. Verify it's encrypted in the repo
+cat ~/.local/share/chezmoi/encrypted_dot_config_private_zsh_private_env_private_secrets.zsh.age
+# Should show: -----BEGIN AGE ENCRYPTED FILE-----
+```
+
+**⚠️ IMPORTANT:** Backup your age key (`~/.config/age/key.txt`) to a password manager or secure location!
+
 ## Overview
 
 This dotfiles setup uses **chezmoi + age encryption** for managing secrets like SSH keys, API keys, and sensitive configuration files across machines.

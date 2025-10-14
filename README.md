@@ -7,6 +7,7 @@ Modern dotfiles management using [chezmoi](https://www.chezmoi.io/) for configur
 - **chezmoi** - Intelligent dotfiles manager with templating, secrets, and cross-platform support
 - **Homebrew Bundle** - Declarative package management via Brewfile
 - **Automatic Package Installation** - Packages auto-install/update when Brewfile changes
+- **Secrets Management** - Encrypted secrets with age (SSH keys, API tokens, credentials)
 - **Version Controlled** - All configs tracked in git
 - **Consistent Across Machines** - Same tools and aliases everywhere
 - **Modern CLI Tools** - Fast, Rust-based alternatives (ripgrep, fd, bat, eza, zoxide, fzf, dust, etc.)
@@ -422,16 +423,47 @@ chezmoi edit --config
 
 ### Secrets Management
 
-chezmoi has built-in secrets support:
-```bash
-# Store a secret
-chezmoi secret set github_token
+This setup uses **age encryption** for managing secrets (API keys, SSH keys, tokens).
 
-# Use in a template
-# ~/.gitconfig.tmpl
-[github]
-    token = {{ (secret "github_token") }}
+**Quick Start:**
+```bash
+# Edit your secrets file (auto-encrypted)
+chezmoi edit ~/.config/zsh/env/secrets.zsh
+
+# Add your secrets
+export OPENAI_API_KEY="sk-..."
+export GITHUB_TOKEN="ghp_..."
+
+# Apply changes
+chezmoi apply
 ```
+
+**What's Included:**
+- ✅ age encryption already configured
+- ✅ Age key: `~/.config/age/key.txt`
+- ✅ Secrets template: `~/.config/zsh/env/secrets.zsh`
+- ✅ Auto-loaded with environment variables
+- ✅ Safety rules in `.chezmoiignore`
+
+**Common Use Cases:**
+```bash
+# Encrypt SSH keys
+chezmoi add --encrypt ~/.ssh/id_ed25519
+chezmoi add ~/.ssh/id_ed25519.pub  # Public keys unencrypted
+
+# Edit encrypted files
+chezmoi edit ~/.ssh/config
+chezmoi edit ~/.aws/credentials
+
+# View decrypted content
+chezmoi cat ~/.config/zsh/env/secrets.zsh
+```
+
+**📚 Full Documentation:** See [SECRETS.md](SECRETS.md) for complete guide including:
+- Backup strategies
+- Password manager integration (1Password, Bitwarden)
+- Key rotation
+- Multi-machine setup
 
 ### Templates
 
