@@ -1,14 +1,14 @@
 # Claude Code Configuration
 
-This directory contains your global Claude Code settings that are synced across machines.
+This directory contains your global Claude Code settings and rules that are synced across machines.
 
 ## What's Managed by Dotfiles
 
 **Shared Settings** (synced across machines):
-- `settings.json` - Global Claude Code preferences
-  - Status line configuration
-  - Always thinking mode
-  - Other global preferences
+- `settings.json` - Active settings (auto-generated from settings.jsonc)
+- `settings.jsonc` - Settings with comments (EDIT THIS, not settings.json)
+- `generate-settings.sh` - Script to generate settings.json from .jsonc
+- `CLAUDE.md` - Global rules and context (like Cursor's .cursorrules)
 - `statuslines/` - Custom status line scripts
   - `comprehensive.sh` - Model, directory, tokens, context %, cost
   - `developer.sh` - Developer-focused info
@@ -48,14 +48,51 @@ Claude Code applies settings in this order (later overrides earlier):
 
 ## Managing Settings
 
-### Add/Edit Global Settings
+### Edit Settings (Recommended Method)
+
+**Step 1: Edit the commented version**
 ```bash
-# Edit the synced settings file
+# Edit settings.jsonc (has all options with comments)
+chezmoi edit ~/.claude/settings.jsonc
+
+# This file contains:
+# - All available settings documented
+# - Comments explaining each option
+# - Commented-out examples
+```
+
+**Step 2: Generate settings.json**
+```bash
+# Generate the actual settings.json (strips comments)
+cd ~/.claude
+./generate-settings.sh
+
+# Or manually:
+# jq '.' settings.jsonc > settings.json
+```
+
+**Step 3: Apply and commit**
+```bash
+# Apply to your system
+chezmoi apply
+
+# Commit to dotfiles
+cd ~/.local/share/chezmoi
+git add dot_claude/settings.jsonc dot_claude/settings.json
+git commit -m "Update Claude Code settings"
+git push
+```
+
+### Quick Edit (Direct Method)
+```bash
+# Edit the active settings file directly
 chezmoi edit ~/.claude/settings.json
 
 # Apply changes
 chezmoi apply
 ```
+
+**Note:** Direct edits to settings.json will be overwritten if you regenerate from settings.jsonc
 
 ### Add/Edit Machine-Specific Settings
 ```bash
@@ -87,17 +124,74 @@ chezmoi apply
 **Always Thinking:** Enabled
 - Claude will use thinking tags for better reasoning
 
-## Example settings.json
+## Global Rules (CLAUDE.md)
 
-```json
+The `CLAUDE.md` file in this directory contains **global rules and context** that apply to ALL projects when using Claude Code. It's like Cursor's `.cursorrules` but global.
+
+**What to put in global CLAUDE.md:**
+- Your coding style preferences
+- Preferred tools and libraries
+- Communication preferences
+- Security and privacy guidelines
+- General development principles
+
+**What to put in project CLAUDE.md:**
+- Project-specific context
+- Architecture decisions
+- API documentation
+- Workflow instructions
+- Team conventions
+
+**Example workflow:**
+```bash
+# Edit global rules
+chezmoi edit ~/.claude/CLAUDE.md
+
+# Apply changes
+chezmoi apply
+
+# Now all new Claude Code sessions will have your rules loaded!
+```
+
+## Example Files
+
+### settings.jsonc (with comments)
+```jsonc
 {
+  // Model configuration
+  "model": "claude-sonnet-4",  // Options: opus-4, sonnet-4, haiku-4
+
+  // Enable extended thinking
+  "alwaysThinkingEnabled": true,
+
+  // Status line
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statuslines/comprehensive.sh"
   },
-  "alwaysThinkingEnabled": true,
+
+  // Output style
+  // "outputStyle": "Concise",  // Options: Concise, Explanatory, Code-focused
+
+  // Permissions (commented out - will prompt by default)
+  // "permissions": {
+  //   "allow": [
+  //     "WebSearch",
+  //     "Bash(git:*)"
+  //   ]
+  // }
+}
+```
+
+### settings.json (auto-generated, no comments)
+```json
+{
   "model": "claude-sonnet-4",
-  "outputStyle": "Concise"
+  "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statuslines/comprehensive.sh"
+  }
 }
 ```
 

@@ -1,0 +1,224 @@
+{
+  // ============================================================================
+  // Claude Code Settings - Comprehensive Reference
+  // ============================================================================
+  // This is a .jsonc file (JSON with Comments) for documentation purposes.
+  // The actual settings.json is generated from this file.
+  //
+  // To update settings:
+  //   1. Edit this file (settings.jsonc)
+  //   2. Run: cd ~/.claude && ./generate-settings.sh
+  //   3. Or manually copy uncommented sections to settings.json
+  //
+  // Settings hierarchy (later overrides earlier):
+  //   1. Enterprise managed settings (system-wide)
+  //   2. User settings (this file) ← YOU ARE HERE
+  //   3. Project .claude/settings.json
+  //   4. Project .claude/settings.local.json
+  //   5. Command-line arguments
+  // ============================================================================
+
+  // ============================================================================
+  // MODEL CONFIGURATION
+  // ============================================================================
+
+  // model: Override the default AI model
+  // Options: "claude-opus-4", "claude-sonnet-4", "claude-haiku-4"
+  // Default: "claude-sonnet-4"
+  // "model": "claude-sonnet-4",
+
+  // alwaysThinkingEnabled: Enable extended thinking for better reasoning
+  // When true, Claude uses thinking tags to reason through complex problems
+  // Default: false
+  "alwaysThinkingEnabled": true,
+
+  // ============================================================================
+  // STATUS LINE CONFIGURATION
+  // ============================================================================
+
+  // statusLine: Customize the status bar display
+  // Type can be "command" or "static"
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/bradleyfay/.claude/statuslines/comprehensive.sh"
+  },
+
+  // Alternative static status line:
+  // "statusLine": {
+  //   "type": "static",
+  //   "text": "Claude Code | Project: {workspace}"
+  // },
+
+  // ============================================================================
+  // OUTPUT & BEHAVIOR
+  // ============================================================================
+
+  // outputStyle: Adjust Claude's response style
+  // Options: "Concise", "Explanatory", "Code-focused"
+  // Default: "Explanatory"
+  // "outputStyle": "Explanatory",
+
+  // includeCoAuthoredBy: Add "Co-Authored-By: Claude" to git commits
+  // Default: true
+  // "includeCoAuthoredBy": true,
+
+  // ============================================================================
+  // PERMISSIONS
+  // ============================================================================
+
+  // permissions: Control what tools and files Claude can access
+  // Default: Prompt for each tool use
+  // "permissions": {
+  //   "allow": [
+  //     // Web access
+  //     "WebSearch",
+  //     "WebFetch(domain:docs.anthropic.com)",
+  //     "WebFetch(domain:github.com)",
+  //
+  //     // Common bash commands
+  //     "Bash(ls:*)",
+  //     "Bash(cat:*)",
+  //     "Bash(git:*)",
+  //     "Bash(npm:*)",
+  //     "Bash(yarn:*)",
+  //     "Bash(pnpm:*)",
+  //     "Bash(brew:*)",
+  //     "Bash(python:*)",
+  //     "Bash(pip:*)",
+  //     "Bash(uv:*)",
+  //     "Bash(node:*)",
+  //     "Bash(docker:*)",
+  //     "Bash(kubectl:*)",
+  //
+  //     // File operations
+  //     "Read(path:/Users/bradleyfay/**)",
+  //     "Write(path:/Users/bradleyfay/Projects/**)",
+  //     "Edit(path:/Users/bradleyfay/Projects/**)",
+  //
+  //     // Tool-specific
+  //     "Bash(tree:*)",
+  //     "Bash(fd:*)",
+  //     "Bash(rg:*)",
+  //     "Bash(jq:*)",
+  //     "Bash(gh:*)"
+  //   ],
+  //   "deny": [
+  //     // Deny dangerous operations
+  //     "Bash(rm -rf /*)",
+  //     "Bash(dd:*)",
+  //     "Write(path:/etc/**)",
+  //     "Write(path:/System/**)"
+  //   ]
+  // },
+
+  // ============================================================================
+  // HOOKS
+  // ============================================================================
+
+  // hooks: Run custom commands before/after tool executions
+  // Available hooks:
+  //   - onPromptSubmit: Before Claude processes your message
+  //   - onToolUse: Before each tool is executed
+  //   - onComplete: After Claude finishes responding
+  //
+  // "hooks": {
+  //   "onPromptSubmit": "echo '[$(date)] Prompt submitted' >> ~/.claude/logs/activity.log",
+  //   "onToolUse": "echo '[$(date)] Tool used: $TOOL_NAME' >> ~/.claude/logs/tools.log",
+  //   "onComplete": "echo '[$(date)] Response complete' >> ~/.claude/logs/activity.log"
+  // },
+
+  // disableAllHooks: Disable all hooks globally
+  // Default: false
+  // "disableAllHooks": false,
+
+  // ============================================================================
+  // ENVIRONMENT VARIABLES
+  // ============================================================================
+
+  // env: Environment variables available in every Claude Code session
+  // These are added to the shell environment for all tool executions
+  //
+  // "env": {
+  //   "ANTHROPIC_API_KEY": "${SECRET_ANTHROPIC_API_KEY}",
+  //   "OPENAI_API_KEY": "${SECRET_OPENAI_API_KEY}",
+  //   "GITHUB_TOKEN": "${SECRET_GITHUB_TOKEN}",
+  //   "NODE_ENV": "development",
+  //   "DEBUG": "false",
+  //   "PYTHONPATH": "/Users/bradleyfay/Projects/libs",
+  //   "CUSTOM_CONFIG_PATH": "/Users/bradleyfay/.config/myapp"
+  // },
+
+  // ============================================================================
+  // AUTHENTICATION
+  // ============================================================================
+
+  // apiKeyHelper: Custom script to generate authentication tokens
+  // Useful for dynamic API key generation or secret management integration
+  //
+  // "apiKeyHelper": "bash /Users/bradleyfay/.claude/scripts/get-api-key.sh",
+
+  // awsAuthRefresh: Custom AWS authentication refresh script
+  // "awsAuthRefresh": "bash /Users/bradleyfay/.claude/scripts/aws-refresh.sh",
+
+  // awsCredentialExport: Custom AWS credential export script
+  // "awsCredentialExport": "bash /Users/bradleyfay/.claude/scripts/aws-export.sh",
+
+  // forceLoginMethod: Restrict login method
+  // Options: "google", "apple", "email"
+  // "forceLoginMethod": "google",
+
+  // forceLoginOrgUUID: Auto-select organization during login
+  // "forceLoginOrgUUID": "your-org-uuid-here",
+
+  // ============================================================================
+  // DATA & CLEANUP
+  // ============================================================================
+
+  // cleanupPeriodDays: How long to keep chat transcripts
+  // Default: 30 days
+  // "cleanupPeriodDays": 30,
+
+  // ============================================================================
+  // MCP (Model Context Protocol) SERVERS
+  // ============================================================================
+
+  // enableAllProjectMcpServers: Auto-approve all MCP servers in projects
+  // Default: false (prompt for approval)
+  // "enableAllProjectMcpServers": false,
+
+  // enabledMcpjsonServers: Explicitly approved MCP servers
+  // "enabledMcpjsonServers": [
+  //   "server-name-1",
+  //   "server-name-2"
+  // ],
+
+  // disabledMcpjsonServers: Explicitly rejected MCP servers
+  // "disabledMcpjsonServers": [
+  //   "untrusted-server"
+  // ],
+
+  // useEnterpriseMcpConfigOnly: Restrict to enterprise-approved MCP servers
+  // Default: false
+  // "useEnterpriseMcpConfigOnly": false
+
+  // ============================================================================
+  // ADVANCED SETTINGS
+  // ============================================================================
+
+  // Custom settings for specific workflows
+  // Add your own here as needed
+
+  // Example: Project templates
+  // "projectTemplates": {
+  //   "python": "/Users/bradleyfay/.claude/templates/python",
+  //   "typescript": "/Users/bradleyfay/.claude/templates/typescript",
+  //   "react": "/Users/bradleyfay/.claude/templates/react"
+  // },
+
+  // Example: Custom shortcuts
+  // "shortcuts": {
+  //   "test": "npm test",
+  //   "build": "npm run build",
+  //   "deploy": "./scripts/deploy.sh"
+  // }
+}
