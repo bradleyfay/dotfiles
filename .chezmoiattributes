@@ -1,8 +1,41 @@
-# Chezmoi attributes - control file permissions
-# Format: pattern permissions
+# Chezmoi attributes - control file permissions and encryption
+# Format: pattern [private] [encrypted] [executable]
+#
+# encrypted - Automatically encrypt with age
+# private - Mark as private (600 permissions)
+# executable - Mark as executable
 
 # VS Code settings don't need private permissions
 Library/Application Support/Code/User/*.json !private
 
 # But if you add keybindings or other configs, they can be normal too
 Library/Application Support/Code/User/** !private
+
+# ============================================================================
+# AUTOMATIC ENCRYPTION RULES
+# ============================================================================
+# These patterns will automatically encrypt files when added with 'chezmoi add'
+
+# SSH keys - always encrypt private keys
+.ssh/id_* encrypted private
+.ssh/*_rsa encrypted private
+.ssh/*_ed25519 encrypted private
+.ssh/config encrypted
+
+# AWS credentials
+.aws/credentials encrypted private
+.aws/config encrypted
+
+# Environment files with secrets
+**/*secret* encrypted private
+**/*credential* encrypted private
+**/secrets.zsh encrypted private
+
+# GPG/PGP keys
+.gnupg/** encrypted private
+
+# API tokens and keys
+**/*.key encrypted private
+**/*.pem encrypted private
+**/*token* encrypted private
+**/*apikey* encrypted private

@@ -1,0 +1,49 @@
+# Pre-commit hooks for dotfiles repository
+# These run on commits to the chezmoi source directory
+# Install: pre-commit install (in ~/.local/share/chezmoi)
+
+repos:
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+
+  # Secret detection - CRITICAL for preventing secret leaks
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args:
+          - '--baseline'
+          - '.secrets.baseline'
+        exclude: |
+          (?x)^(
+            .*\.age$|
+            SECRETS\.md$|
+            README\.md$
+          )$
+
+  # Additional safety: Check for common secret patterns
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: detect-private-key
+        exclude: '\.age$'  # Encrypted files are OK
+
+  # Chezmoi-specific: Warn if files should be encrypted but aren't
+  - repo: local
+    hooks:
+      - id: check-encryption
+        name: Check files are properly encrypted
+        entry: bash -c 'if git diff --cached --name-only | grep -E "(id_rsa|id_ed25519|credentials|secret|\.key|\.pem)" | grep -v "\.age$" | grep -v "\.pub$" | grep -v "\.secrets\.baseline$" | grep -v "SECURITY\.md$" | grep -v "SECRETS\.md$"; then echo "ERROR - Found unencrypted secret files! Use chezmoi add --encrypt"; exit 1; fi'
+        language: system
+        always_run: false
+        pass_filenames: false

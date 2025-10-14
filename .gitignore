@@ -42,7 +42,7 @@ __pycache__/
 *.temp
 *.log
 
-# Secret/sensitive files
+# Secret/sensitive files (SAFETY LAYER: prevent unencrypted secrets)
 .env
 .env.*
 !.env.example
@@ -54,6 +54,11 @@ credentials/
 *.pem
 *.p12
 *.pfx
+
+# IMPORTANT: Allow encrypted files (.age suffix)
+# These are safe to commit because they're encrypted
+!**/*.age
+!*.age
 
 # Cache directories
 cache/
@@ -71,11 +76,12 @@ node_modules/
 \#*\#
 .#*
 
-# SSH keys (extra safety)
+# SSH keys (extra safety - private keys only)
 *.id_rsa
 *.id_ed25519
 id_rsa*
 id_ed25519*
+!*.pub  # Public keys are safe to commit
 
 # GPG keys
 *.gpg
