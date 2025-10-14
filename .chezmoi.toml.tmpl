@@ -1,0 +1,9 @@
+{{- $machineType := "personal" -}}
+{{- if (hasKey . "machine_type") -}}
+{{-   $machineType = .machine_type -}}
+{{- else if stdinIsATTY -}}
+{{-   $machineType = promptString "Machine type (personal/work)" "personal" -}}
+{{- end -}}
+
+[data]
+    machine_type = {{ $machineType | quote }}

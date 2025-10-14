@@ -1,0 +1,40 @@
+#!/bin/bash
+# Reinitialize git hooks for existing repositories
+# Usage: git-init-existing [directory]
+
+set -e
+
+SEARCH_DIR="${1:-.}"
+TEMPLATE_DIR="$HOME/.git-template"
+
+if [ ! -d "$TEMPLATE_DIR" ]; then
+    echo "❌ Template directory not found: $TEMPLATE_DIR"
+    exit 1
+fi
+
+echo "🔍 Finding git repositories in: $SEARCH_DIR"
+echo ""
+
+count=0
+find "$SEARCH_DIR" -name ".git" -type d -maxdepth 3 2>/dev/null | while read gitdir; do
+    repo=$(dirname "$gitdir")
+
+    # Skip if repo is in excluded directories
+    if echo "$repo" | grep -qE "(node_modules|venv|\.pyenv|\.npm)"; then
+        continue
+    fi
+
+    echo "📦 $repo"
+
+    # Copy hooks
+    if [ -d "$TEMPLATE_DIR/hooks" ]; then
+        cp -f "$TEMPLATE_DIR/hooks"/* "$gitdir/hooks/" 2>/dev/null || true
+        chmod +x "$gitdir/hooks"/* 2>/dev/null || true
+        count=$((count + 1))
+    fi
+done
+
+echo ""
+echo "✅ Reinitialized $count repositories"
+echo ""
+echo "💡 Run 'pre-commit install' in each repo to finalize setup"
