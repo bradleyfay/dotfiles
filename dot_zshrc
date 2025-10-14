@@ -1,11 +1,10 @@
 # .zshrc - Minimal Zsh configuration
 
-# Set up PATH with Homebrew and common development paths
-# Homebrew (Apple Silicon)
+# Set up PATH with Homebrew
+# Homebrew (Apple Silicon) - must run first to set up Homebrew's PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Personal bin directories
-export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+# Note: Additional PATH configuration is in ~/.config/zsh/env/00-path.zsh
 
 # zsh-completions - add to fpath before compinit
 if [ -d /opt/homebrew/share/zsh-completions ]; then

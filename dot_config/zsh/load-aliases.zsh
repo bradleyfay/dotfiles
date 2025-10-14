@@ -28,10 +28,9 @@ load_aliases() {
 # }
 
 # OPTION 2: Load aliases before EVERY prompt (good balance) - RECOMMENDED
-# Uncomment to enable:
-precmd() {
-    load_aliases
-}
+# Using add-zsh-hook to avoid conflicts with other precmd functions
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd load_aliases
 
 # OPTION 3: Manual reload with a command (best performance)
 # This is always available regardless of which option above you choose
