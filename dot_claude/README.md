@@ -9,14 +9,14 @@ This directory contains your global Claude Code settings and rules that are sync
 - `settings.jsonc` - Settings with comments (EDIT THIS, not settings.json)
 - `generate-settings.sh` - Script to generate settings.json from .jsonc
 - `CLAUDE.md` - Global rules and context (like Cursor's .cursorrules)
-- `commands/` - Global slash commands (available in ALL projects)
-  - `/explain` - Explain code or concepts
-  - `/review` - Code review
-  - `/commit` - Generate conventional commits
-  - `/debug` - Debugging help
-  - `/refactor` - Refactoring suggestions
-  - `/test` - Generate tests
-  - `/optimize` - Performance optimizations
+- `commands/global/` - Global slash commands (available in ALL projects)
+  - `/global/explain` - Explain code or concepts
+  - `/global/review` - Code review
+  - `/global/commit` - Generate conventional commits
+  - `/global/debug` - Debugging help
+  - `/global/refactor` - Refactoring suggestions
+  - `/global/test` - Generate tests
+  - `/global/optimize` - Performance optimizations
 - `statuslines/` - Custom status line scripts
   - `comprehensive.sh` - Model, directory, tokens, context %, cost
   - `developer.sh` - Developer-focused info
@@ -110,8 +110,8 @@ code ~/.claude/settings.local.json
 
 ### Add a New Slash Command
 ```bash
-# Create the command
-vim ~/.claude/commands/mycommand.md
+# Create the command in the global/ subdirectory
+vim ~/.claude/commands/global/mycommand.md
 
 # Add frontmatter and prompt:
 # ---
@@ -121,13 +121,13 @@ vim ~/.claude/commands/mycommand.md
 # Your prompt here. Use $ARGUMENTS for user input.
 
 # Add it to chezmoi
-chezmoi add ~/.claude/commands/mycommand.md
+chezmoi add ~/.claude/commands/global/mycommand.md
 
 # Apply
 chezmoi apply
 
 # Test it in any project
-# /mycommand your arguments here
+# /global/mycommand your arguments here
 ```
 
 ### Add a New Status Line Script

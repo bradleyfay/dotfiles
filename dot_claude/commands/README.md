@@ -2,34 +2,45 @@
 
 This directory contains **global slash commands** that are available in ALL Claude Code projects.
 
+Commands are organized in the `global/` subdirectory to clearly differentiate them from project-specific commands.
+
 ## Available Commands
 
+All commands are prefixed with `/global/` to distinguish them from project commands:
+
 ### Development
-- `/explain` - Explain code, concepts, or files in detail
-- `/review` - Code review with quality and best practices focus
-- `/refactor` - Suggest refactoring improvements
-- `/optimize` - Suggest performance optimizations
-- `/test` - Generate comprehensive tests
+- `/global/explain` - Explain code, concepts, or files in detail
+- `/global/review` - Code review with quality and best practices focus
+- `/global/refactor` - Suggest refactoring improvements
+- `/global/optimize` - Suggest performance optimizations
+- `/global/test` - Generate comprehensive tests
 
 ### Git & Workflow
-- `/commit` - Generate conventional commit messages for staged changes
-- `/debug` - Systematic debugging help
+- `/global/commit` - Generate conventional commit messages for staged changes
+- `/global/debug` - Systematic debugging help
 
 ## Using Slash Commands
 
 In any Claude Code session, type:
 ```
-/explain the authentication flow
-/review src/auth.ts
-/commit
-/test this function
+/global/explain the authentication flow
+/global/review src/auth.ts
+/global/commit
+/global/test this function
 ```
+
+**Why `/global/` prefix?**
+- Makes it immediately obvious these are global (not project-specific)
+- Avoids naming conflicts with project commands
+- Organized in folders for better structure
 
 ## Creating New Commands
 
-1. Create a new `.md` file in this directory:
+### Add to Global Commands
+
+1. Create a new `.md` file in the `global/` subdirectory:
 ```bash
-vim ~/.claude/commands/mycommand.md
+vim ~/.claude/commands/global/mycommand.md
 ```
 
 2. Add frontmatter and prompt:
@@ -46,9 +57,25 @@ Use $1, $2, etc. for positional arguments.
 
 3. Add to chezmoi:
 ```bash
-chezmoi add ~/.claude/commands/mycommand.md
+chezmoi add ~/.claude/commands/global/mycommand.md
 chezmoi apply
 cd ~/.local/share/chezmoi && git add -A && git commit && git push
+```
+
+4. Use it:
+```
+/global/mycommand your arguments here
+```
+
+### Create New Command Categories
+
+You can create additional subdirectories for organization:
+```bash
+mkdir ~/.claude/commands/ai
+vim ~/.claude/commands/ai/summarize.md    # Use as: /ai/summarize
+
+mkdir ~/.claude/commands/devops
+vim ~/.claude/commands/devops/deploy.md   # Use as: /devops/deploy
 ```
 
 ## Command Format
@@ -76,16 +103,27 @@ git log --oneline -n 10
 Analyze the git history above and: $ARGUMENTS
 ```
 
-### Namespaced Commands (subdirectories)
-Create subdirectories for organization:
+### Current Directory Structure
 ```
 commands/
-├── git/
-│   ├── commit.md     (/git/commit)
-│   └── review.md     (/git/review)
-└── code/
-    ├── review.md     (/code/review)
-    └── refactor.md   (/code/refactor)
+├── README.md
+└── global/               ← All global commands here
+    ├── explain.md        (/global/explain)
+    ├── review.md         (/global/review)
+    ├── commit.md         (/global/commit)
+    ├── debug.md          (/global/debug)
+    ├── refactor.md       (/global/refactor)
+    ├── test.md           (/global/test)
+    └── optimize.md       (/global/optimize)
+```
+
+You can add more categories as needed:
+```
+commands/
+├── global/              ← General-purpose commands
+├── ai/                  ← AI-specific commands
+├── devops/              ← DevOps commands
+└── git/                 ← Git-specific commands
 ```
 
 ## Tips
@@ -112,24 +150,24 @@ commands/
 
 ### Explain Command
 ```
-/explain how zoxide initialization works in navigation.zsh
+/global/explain how zoxide initialization works in navigation.zsh
 ```
 
 ### Review Command
 ```
-/review src/components/Header.tsx
+/global/review src/components/Header.tsx
 ```
 
 ### Commit Command
 ```
 # After staging changes:
 git add src/auth.ts
-/commit added OAuth2 support
+/global/commit added OAuth2 support
 ```
 
 ### Debug Command
 ```
-/debug TypeError: Cannot read property 'map' of undefined in UserList component
+/global/debug TypeError: Cannot read property 'map' of undefined in UserList component
 ```
 
 ## Syncing with Dotfiles
