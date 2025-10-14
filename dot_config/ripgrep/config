@@ -1,0 +1,40 @@
+# Ripgrep Configuration
+# This file is automatically loaded by ripgrep when RIPGREP_CONFIG_PATH is set
+
+# Search Options
+--smart-case              # Case insensitive unless pattern contains uppercase
+--hidden                  # Search hidden files and directories
+--follow                  # Follow symbolic links
+
+# Display Options
+--colors=line:fg:yellow   # Line numbers in yellow
+--colors=line:style:bold  # Bold line numbers
+--colors=path:fg:green    # File paths in green
+--colors=path:style:bold  # Bold file paths
+--colors=match:fg:red     # Matches in red
+--colors=match:style:bold # Bold matches
+
+# Performance
+--max-columns=150         # Don't print lines longer than this
+--max-columns-preview     # Show preview for long lines
+
+# Exclusions
+--glob=!.git/             # Ignore .git directories
+--glob=!node_modules/     # Ignore node_modules
+--glob=!.venv/            # Ignore Python virtual environments
+--glob=!venv/             # Ignore Python virtual environments
+--glob=!__pycache__/      # Ignore Python cache
+--glob=!*.pyc             # Ignore compiled Python files
+--glob=!.pytest_cache/    # Ignore pytest cache
+--glob=!.mypy_cache/      # Ignore mypy cache
+--glob=!.ruff_cache/      # Ignore ruff cache
+--glob=!dist/             # Ignore build directories
+--glob=!build/            # Ignore build directories
+--glob=!target/           # Ignore Rust build directories
+--glob=!.next/            # Ignore Next.js build directories
+--glob=!*.min.js          # Ignore minified JavaScript
+--glob=!*.min.css         # Ignore minified CSS
+--glob=!package-lock.json # Ignore package lock files
+--glob=!yarn.lock         # Ignore yarn lock files
+--glob=!pnpm-lock.yaml    # Ignore pnpm lock files
+--glob=!*.age             # Ignore encrypted files

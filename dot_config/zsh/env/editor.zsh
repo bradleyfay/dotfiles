@@ -16,13 +16,7 @@ export PAGER="bat"
 # This configures bat to properly display man pages with colors
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# BAT_THEME - Color scheme for bat
-# Use a dark theme that matches Tokyo Night terminal
-export BAT_THEME="TwoDark"
-
-# BAT_STYLE - Configure bat display style
-# Options: full, auto, plain, changes, header, grid, rule, numbers, snip
-export BAT_STYLE="numbers,changes,header,grid"
+# Note: bat theme and style are configured in ~/.config/bat/config
 
 # LESS - Options for less pager (fallback and used by bat internally)
 # -R: Allow ANSI color codes

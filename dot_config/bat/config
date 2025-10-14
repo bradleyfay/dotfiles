@@ -1,0 +1,39 @@
+# Bat Configuration
+# Config file for bat (better cat)
+
+# Theme
+--theme="TwoDark"
+
+# Display Style
+# Options: auto, full, plain, changes, header, grid, rule, numbers, snip
+--style="numbers,changes,header,grid"
+
+# Use italic text on the terminal (not supported on all terminals)
+--italic-text=always
+
+# Paging
+# Options: auto, always, never
+# auto: Only use pager if output doesn't fit on screen
+--paging=auto
+
+# Map file extensions to languages for syntax highlighting
+--map-syntax "*.zsh:Zsh"
+--map-syntax ".zshrc:Zsh"
+--map-syntax ".zprofile:Zsh"
+--map-syntax ".zshenv:Zsh"
+--map-syntax "*.env:Bash"
+--map-syntax ".env*:Bash"
+--map-syntax "Brewfile:Ruby"
+--map-syntax "*.conf:INI"
+--map-syntax "config:INI"
+
+# Tab width
+--tabs=2
+
+# Show non-printable characters
+# Options: auto, always, never
+--show-all=auto
+
+# Wrap long lines
+# Options: auto, never, character
+--wrap=auto

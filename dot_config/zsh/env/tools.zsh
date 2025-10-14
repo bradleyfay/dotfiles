@@ -14,3 +14,8 @@ export HOMEBREW_NO_ENV_HINTS=1        # Reduce hint messages
 # Homebrew trash - use the better version instead of macOS built-in
 # This version supports more features and silently accepts rm flags
 export PATH="/opt/homebrew/opt/trash/bin:$PATH"
+
+# Ripgrep Configuration
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+
+# Bat Configuration (uses config file in ~/.config/bat/config)
