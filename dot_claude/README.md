@@ -17,6 +17,14 @@ This directory contains your global Claude Code settings and rules that are sync
   - `/global/refactor` - Refactoring suggestions
   - `/global/test` - Generate tests
   - `/global/optimize` - Performance optimizations
+- `agents/` - Global sub-agents (specialized AI assistants)
+  - `code-reviewer` - Expert code review and quality analysis
+  - `test-generator` - Comprehensive test suite generation
+  - `debugger` - Systematic debugging and troubleshooting
+  - `refactorer` - Code refactoring and improvement
+  - `docs-writer` - Technical documentation specialist
+  - `security-auditor` - Security review and vulnerability detection
+  - `performance-optimizer` - Performance analysis and optimization
 - `statuslines/` - Custom status line scripts
   - `comprehensive.sh` - Model, directory, tokens, context %, cost
   - `developer.sh` - Developer-focused info
@@ -144,6 +152,32 @@ chezmoi edit ~/.claude/settings.json
 
 # Apply
 chezmoi apply
+```
+
+### Add/Edit a Custom Agent
+```bash
+# Create or edit an agent
+vim ~/.claude/agents/my-agent.md
+
+# Add frontmatter and instructions:
+# ---
+# name: my-agent
+# description: When to use this agent
+# tools: Read, Write, Bash
+# model: sonnet
+# ---
+#
+# System prompt describing agent's role...
+
+# Add it to chezmoi
+chezmoi add ~/.claude/agents/my-agent.md
+
+# Apply
+chezmoi apply
+
+# Use it in any project
+# "Use the my-agent to help me with X"
+# or just describe the task and Claude will pick the right agent
 ```
 
 ## Current Configuration
