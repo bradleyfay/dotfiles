@@ -14,5 +14,8 @@
 # Configure fzf options for zoxide interactive mode
 export _ZO_FZF_OPTS="--height=40% --layout=reverse --border --preview='ls -la {2..}' --preview-window=right:50%"
 
-# Initialize zoxide and override cd command
-eval "$(zoxide init zsh --cmd cd)"
+# Initialize zoxide - only in interactive shells
+# This prevents breaking cd in scripts, subshells, and non-interactive contexts
+if [[ -o interactive ]]; then
+    eval "$(zoxide init zsh --cmd cd)"
+fi
