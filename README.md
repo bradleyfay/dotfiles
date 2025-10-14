@@ -13,7 +13,43 @@ Modern dotfiles management using [chezmoi](https://www.chezmoi.io/) for configur
 
 ## Quick Start
 
-### First-Time Setup (New Machine)
+### Automated Installation (Recommended)
+
+Bootstrap your entire setup with a single command:
+
+```bash
+curl -LsSf https://raw.githubusercontent.com/bradleyfay/dotfiles/main/install.sh | sh
+```
+
+**What this does:**
+- ✅ Detects your platform (macOS/Linux)
+- ✅ Installs Homebrew (if not present)
+- ✅ Installs chezmoi
+- ✅ Clones and applies your dotfiles
+- ✅ Installs all packages from Brewfile
+- ✅ Sets up age encryption (optional)
+- ✅ Prompts for machine type (personal/work)
+
+**Want to review the script first?**
+```bash
+curl -LsSf https://raw.githubusercontent.com/bradleyfay/dotfiles/main/install.sh | less
+```
+
+**Environment variables (optional):**
+```bash
+# Use HTTPS instead of SSH
+export DOTFILES_REPO=https://github.com/bradleyfay/dotfiles.git
+
+# Specify machine type without prompting
+export MACHINE_TYPE=work
+
+# Run installation
+curl -LsSf https://raw.githubusercontent.com/bradleyfay/dotfiles/main/install.sh | sh
+```
+
+### Manual Installation (Alternative)
+
+If you prefer manual installation:
 
 ```bash
 # 1. Install Homebrew (if not already installed)
