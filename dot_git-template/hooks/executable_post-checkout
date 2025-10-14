@@ -1,8 +1,40 @@
 #!/bin/bash
-# Auto-initialize pre-commit configuration if it doesn't exist
+# Post-checkout hook: Runs after git checkout
+# 1. Cleans build artifacts when switching branches
+# 2. Auto-initializes pre-commit configuration if it doesn't exist
 
-# Only run after clone (when checking out from HEAD to HEAD)
-# or when switching branches where .pre-commit-config.yaml doesn't exist
+PREV_HEAD=$1
+NEW_HEAD=$2
+BRANCH_CHECKOUT=$3
+
+# ==============================================================================
+# Clean build artifacts when switching branches
+# ==============================================================================
+if [ "$BRANCH_CHECKOUT" = "1" ]; then
+    echo "🧹 Cleaning build artifacts..."
+
+    # Python artifacts
+    find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null
+    find . -type f -name "*.pyc" -delete 2>/dev/null
+    find . -type f -name "*.pyo" -delete 2>/dev/null
+    find . -type d -name "*.egg-info" -exec rm -rf {} + 2>/dev/null
+    find . -type d -name ".pytest_cache" -exec rm -rf {} + 2>/dev/null
+    find . -type d -name ".mypy_cache" -exec rm -rf {} + 2>/dev/null
+
+    # Node/JavaScript artifacts
+    find . -type d -name ".next" -maxdepth 2 -exec rm -rf {} + 2>/dev/null
+    find . -type d -name "dist" -maxdepth 2 -exec rm -rf {} + 2>/dev/null
+    find . -type d -name "build" -maxdepth 2 -exec rm -rf {} + 2>/dev/null
+
+    # General cache directories
+    find . -type d -name ".cache" -exec rm -rf {} + 2>/dev/null
+
+    echo "✓ Build artifacts cleaned"
+fi
+
+# ==============================================================================
+# Auto-initialize pre-commit configuration
+# ==============================================================================
 
 if [ ! -f .pre-commit-config.yaml ]; then
     echo "No .pre-commit-config.yaml found. Creating minimal pre-commit configuration..."
