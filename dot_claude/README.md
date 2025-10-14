@@ -23,6 +23,7 @@ This directory contains your global Claude Code settings and rules that are sync
   - `debugger` - Systematic debugging and troubleshooting
   - `refactorer` - Code refactoring and improvement
   - `docs-writer` - Technical documentation specialist
+  - `copy-writer` - Remove LLM tells, increase precision and clarity
   - `security-auditor` - Security review and vulnerability detection
   - `performance-optimizer` - Performance analysis and optimization
 - `statuslines/` - Custom status line scripts

@@ -56,6 +56,12 @@ Sub-agents are specialized AI assistants that Claude can delegate tasks to. They
 - **Tools**: Read, Grep, Glob, Write, Edit, Bash
 - **Example**: "Have the docs-writer create API documentation for my library"
 
+**copy-writer** - Remove LLM indicators and improve clarity
+- **Use when**: Editing documentation to sound more human and direct
+- **Expertise**: Remove AI tells (em-dashes, rhetorical phrases), increase precision, information density
+- **Tools**: Read, Edit, Write, Grep, Glob
+- **Example**: "Use the copy-writer to edit this README and remove LLM patterns"
+
 **security-auditor** - Security review and vulnerability detection
 - **Use when**: Security audits, threat analysis, compliance reviews
 - **Expertise**: Injection attacks, authentication, secrets, dependencies, OWASP
