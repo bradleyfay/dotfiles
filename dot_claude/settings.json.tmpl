@@ -1,0 +1,8 @@
+{{- $home := .chezmoi.homeDir }}
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash {{ $home }}/.claude/statuslines/comprehensive.sh"
+  },
+  "alwaysThinkingEnabled": true
+}
