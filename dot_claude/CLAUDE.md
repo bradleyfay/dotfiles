@@ -94,32 +94,57 @@ project/
 
 ### Commit Message Format
 
-Use [Conventional Commits](https://www.conventionalcommits.org/):
+**ALWAYS use [Conventional Commits](https://www.conventionalcommits.org/)** - this is non-negotiable:
 
 ```
 <type>(<scope>): <description>
 
-[optional body]
+[optional body - explain WHY, not what]
 
-[optional footer]
+[optional footer - breaking changes, issue references]
 ```
 
-**Types:**
+**Types (must be one of these):**
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
 - `style`: Code style changes (formatting, no logic change)
-- `refactor`: Code refactoring
+- `refactor`: Code refactoring (no feature change)
 - `test`: Adding or updating tests
-- `chore`: Maintenance tasks
+- `chore`: Maintenance tasks, tooling, CI/CD
 
-**Examples:**
+**Scope (required for this repo):**
+- `install`: Installation script changes
+- `git-hooks`: Git template hooks
+- `claude`: Claude Code configuration
+- `zsh`: Shell configuration
+- `config`: Configuration files (git, bat, etc.)
+- `docs`: Documentation
+
+**Examples - CORRECT:**
 ```
-feat(auth): add OAuth2 login flow
-fix(api): handle timeout errors gracefully
+feat(install): add auto-detection of dotfiles repository
+fix(git-hooks): repair post-checkout pre-commit auto-install
 docs(readme): update installation instructions
-refactor(utils): simplify error handling
+refactor(install): simplify brewfile handling logic
 ```
+
+**Examples - WRONG (don't do these):**
+```
+Add new feature          ✗ Missing type and scope
+fix stuff               ✗ Too vague, missing scope
+Update file             ✗ Missing type
+feat: added thing       ✗ Missing scope (needs for this repo)
+```
+
+**Important Rules:**
+1. Lowercase type and scope
+2. No period at end of description
+3. Imperative mood: "add" not "added" or "adds"
+4. Scope is REQUIRED for this dotfiles repo
+5. Keep description under 50 characters when possible
+6. Use detailed body to explain WHY, not WHAT
+7. Reference issues when applicable: `Fixes #123`
 
 ### Branch Naming
 
@@ -181,11 +206,32 @@ refactor(utils): simplify error handling
 
 ### When Working in This Dotfiles Repo
 
+**Commit Messages (STRICT):**
+- ALWAYS use conventional commits with scope (see section above)
+- Scope MUST be one of: `install`, `git-hooks`, `claude`, `zsh`, `config`, `docs`
+- Format: `type(scope): description` - no exceptions
+- Include detailed body explaining the WHY and impact
+- Reference issues if applicable
+
+**Workflow:**
 - Use `chezmoi add` to manage new files
 - Test changes before committing
+  - Run `bash install.sh` to verify idempotency
+  - Test on both work and personal machines if possible
 - Document settings in READMEs
-- Consider cross-platform compatibility
+- Consider cross-platform compatibility (macOS, Linux)
 - Keep secrets encrypted with age
+
+**Git Hooks:**
+- All git hooks must have proper error handling
+- Show meaningful errors, not silent failures
+- Include helpful instructions when things go wrong
+
+**Key Files:**
+- `install.sh`: Must be idempotent, support piped execution
+- `.git-template/hooks/`: Must work silently on success
+- `dot_claude/`: Keep portable paths using chezmoi templating
+- `.pre-commit-config.yaml`: Define code quality standards
 
 ### When Working with AI/ML Projects
 
