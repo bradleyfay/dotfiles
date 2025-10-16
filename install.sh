@@ -470,6 +470,21 @@ print_completion_message() {
     echo "For Claude Code configuration details:"
     echo "  cat ~/.claude/README.md"
     echo ""
+
+    echo "Machine Configuration:"
+    echo "  If you're on a work machine, run:"
+    echo "  ~/.local/bin/setup-work-machine"
+    echo ""
+    echo "  Or manually set the machine type:"
+    echo "  chezmoi state set --bucket install --key machine_type --value work"
+    echo "  chezmoi apply"
+    echo ""
+
+    echo "Pre-commit Setup:"
+    echo "  For existing cloned repositories to use pre-commit hooks:"
+    echo "  cd <repo-directory>"
+    echo "  pre-commit install"
+    echo ""
 }
 
 # Main installation flow
