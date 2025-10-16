@@ -1,0 +1,10 @@
+#!/bin/bash
+# Post-merge hook: Runs after git merge (including rebase with merge commits)
+# Installs pre-commit hooks if config exists
+
+if [ -f .pre-commit-config.yaml ] && command -v pre-commit &> /dev/null; then
+    if ! pre-commit install --install-hooks -f 2>&1; then
+        echo "⚠ Warning: Failed to install pre-commit hooks after merge"
+        echo "  Run 'pre-commit install' manually to set up hooks"
+    fi
+fi
