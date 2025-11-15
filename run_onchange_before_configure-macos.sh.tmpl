@@ -42,13 +42,13 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Keyboard & Input
 # =============================================================================
 
-# Set a blazingly fast keyboard repeat rate
-# Normal minimum is 2 (30 ms), we're setting 1 (15 ms)
-defaults write NSGlobalDomain KeyRepeat -int 1
+# Set a fast keyboard repeat rate (balanced for accuracy)
+# Options: 2 (30ms - fast), 3 (45ms - moderate), 6 (90ms - macOS default)
+defaults write NSGlobalDomain KeyRepeat -int 2
 
-# Set a shorter delay until key repeat
-# Normal minimum is 15 (225 ms), we're setting 10 (150 ms)
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+# Set delay before key repeat starts (macOS default to avoid accidental repeats)
+# Options: 15 (225ms - macOS default), 20 (300ms - more forgiving)
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
