@@ -17,10 +17,7 @@
 --paging=auto
 
 # Map file extensions to languages for syntax highlighting
---map-syntax "*.zsh:Zsh"
---map-syntax ".zshrc:Zsh"
---map-syntax ".zprofile:Zsh"
---map-syntax ".zshenv:Zsh"
+# Note: Zsh files (.zshrc, .zprofile, etc.) are handled by bat's default Bash syntax
 --map-syntax "*.env:Bash"
 --map-syntax ".env*:Bash"
 --map-syntax "Brewfile:Ruby"
@@ -31,8 +28,9 @@
 --tabs=2
 
 # Show non-printable characters
-# Options: auto, always, never
---show-all=auto
+# Note: --show-all is a boolean flag (doesn't accept values)
+# Uncomment the next line to always show non-printable characters
+# --show-all
 
 # Wrap long lines
 # Options: auto, never, character
